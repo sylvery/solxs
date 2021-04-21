@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CustomerOrder{% endblock %}
+
+{% block body %}
+    <h1>CustomerOrder</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ customer_order.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('customer_order_index') }}">back to list</a>
+
+    <a href="{{ path('customer_order_edit', {'id': customer_order.id}) }}">edit</a>
+
+    {{ include('customer_order/_delete_form.html.twig') }}
+{% endblock %}

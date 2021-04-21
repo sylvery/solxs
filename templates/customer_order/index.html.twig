@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CustomerOrder index{% endblock %}
+
+{% block body %}
+    <h1>CustomerOrder index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for customer_order in customer_orders %}
+            <tr>
+                <td>{{ customer_order.id }}</td>
+                <td>
+                    <a href="{{ path('customer_order_show', {'id': customer_order.id}) }}">show</a>
+                    <a href="{{ path('customer_order_edit', {'id': customer_order.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('customer_order_new') }}">Create new</a>
+{% endblock %}
