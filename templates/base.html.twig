@@ -6,14 +6,35 @@
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+    <body class="container-fluid">
+        <div class="fixed-top bg-warning mb-5" id="menu-nav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-warning container">
+                <a class="navbar-brand" href="{{path('home')}}"><img id="menu-nav-logo" src="{{asset('img/logo - 100x100.png')}}" style="max-width: 75px;" class="img-fluid" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    {{ knp_menu_render('main', {
+                        'currentClass': 'active',
+                        'ancestorClass': 'active',
+                        'parentClass': 'active',
+                    })}}
+                    {# {% set adminUrl = ea_url()
+                        .setController('App\\Controller\\Admin\\PlantAssetCrudController')
+                    %} #}
+                    <a class="btn btn-dark nav-link" href="{{'#'}}">Admin</a>
+                    {# <a class="btn btn-danger nav-link" href="{{path('app_logout')}}">Sign Out</a> #}
+                </div>
+            </nav>
+        </div>
         {% block body %}{% endblock %}
     </body>
 </html>
