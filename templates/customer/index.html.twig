@@ -3,8 +3,8 @@
 {% block title %}Customer{% endblock %}
 
 {% block body %}
-    <h1 class="text-info mb-3">Customers</h1>
-
+    <h1 class="text-info mb-3 display-4">Customers</h1>
+    <a class="btn btn-sm btn-success mb-3" href="{{ path('customer_new') }}">add new customer</a>
     <table class="table table-sm small">
         <thead>
             <tr>
@@ -30,6 +30,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a class="btn btn-sm btn-dark" href="{{ path('customer_new') }}">Create new</a>
 {% endblock %}

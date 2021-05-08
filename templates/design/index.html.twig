@@ -3,32 +3,20 @@
 {% block title %}Designs{% endblock %}
 
 {% block body %}
-    <h1 class="text-info mb-3">Designs</h1>
-
-    <table class="table table-sm small table-striped mb-3">
-        <thead>
-            <tr>
-                <th>Sample</th>
-                <th>Name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1 class="text-info mb-3 display-4">Designs</h1>
+    <a class="btn btn-success btn-sm mb-3" href="{{ path('design_new') }}">add new design</a>
+    <div class="card-columns">
         {% for design in designs %}
-            <tr>
-                <td>
-                    <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
-                </td>
-                <td><a href="{{path('design_show', {'id': design.id})}}">{{ design.name }}</a></td>
-                <td>{{ design.description }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+            <div class="card">
+                <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+                <div class="card-body">
+                    <h4 class="card-title">{{design.name}}</h4>
+                    <p class="card-text">{{design.description|raw}}</p>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-secondary btn-sm" href="{{path('design_show',{'id':design.id})}}">details</a>
+                </div>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a class="btn btn-dark btn-sm" href="{{ path('design_new') }}">Create new</a>
+    </div>
 {% endblock %}

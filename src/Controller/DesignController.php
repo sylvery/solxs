@@ -48,7 +48,7 @@ class DesignController extends AbstractController
             $entityManager->persist($design);
             $entityManager->flush();
 
-            return $this->redirectToRoute('design_index');
+            return $this->redirectToRoute('design_new');
         }
 
         return $this->render('design/new.html.twig', [

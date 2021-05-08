@@ -3,7 +3,7 @@
 {% block title %}Customer Order{% endblock %}
 
 {% block body %}
-    <h1 class="text-info mb-3"><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{customer_order.customer.fullName}}</a></h1>
+    <h1 class="text-info mb-3 display-4"><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{customer_order.customer.fullName}}</a></h1>
     <p class="small text-muted">Phone: {{customer_order.customer.phoneNumber}}</p>
 
     <table class="table table-sm table-striped small">

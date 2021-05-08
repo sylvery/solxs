@@ -3,24 +3,15 @@
 {% block title %}Design{% endblock %}
 
 {% block body %}
-    <h1 class="text-info mb-3">{{design.name}}</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Photo</th>
-                <td><a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a></td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ design.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ design.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-4 featured-image">
+            <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img class="img-fluid card-img-top" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+        </div>
+        <div class="col-8 content">
+            <h1 class="text-info mb-3 display-4">{{design.name}}</h1>
+            <p>{{ design.description }}</p>
+        </div>
+    </div>
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('design_index') }}">back to list</a>
         <a href="{{ path('design_edit', {'id': design.id}) }}">edit</a>

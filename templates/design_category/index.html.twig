@@ -3,27 +3,22 @@
 {% block title %}Design Category{% endblock %}
 
 {% block body %}
-    <h1 class="text-info mb-3">Design Category</h1>
-
+    <h1 class="text-info mb-3 display-4">Design Category</h1>
+    <a class="btn btn-success btn-sm mb-3" href="{{ path('design_category_new') }}">add new category</a>
     <table class="table table-sm table-striped mb-3">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th>Designs</th>
             </tr>
         </thead>
         <tbody>
         {% for design_category in design_categories %}
             <tr>
-                <td>{{ design_category.id }}</td>
-                <td>{{ design_category.title }}</td>
+                <td><a href="{{ path('design_category_show', {'id': design_category.id}) }}">{{ design_category.id }} - {{ design_category.title }}</a></td>
                 <td>{{ design_category.description }}</td>
-                <td>
-                    <a href="{{ path('design_category_show', {'id': design_category.id}) }}">show</a>
-                    <a href="{{ path('design_category_edit', {'id': design_category.id}) }}">edit</a>
-                </td>
+                <td>{{ design_category.designs.count }}</td>
             </tr>
         {% else %}
             <tr>
@@ -32,6 +27,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a class="btn btn-dark btn-sm" href="{{ path('design_category_new') }}">Create new</a>
 {% endblock %}
