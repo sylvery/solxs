@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\CustomerOrder;
 use App\Form\CustomerOrderType;
 use App\Repository\CustomerOrderRepository;
+use App\Repository\DesignRepository;
+use DateTime;
+use DateTimeZone;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +31,14 @@ class CustomerOrderController extends AbstractController
     /**
      * @Route("/new", name="customer_order_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, DesignRepository $designRepository): Response
     {
         $customerOrder = new CustomerOrder();
         $form = $this->createForm(CustomerOrderType::class, $customerOrder);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $customerOrder->setDateordered(new DateTime($customerOrder->getDateordered(), new DateTimeZone('Pacific/Port_Moresby')));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($customerOrder);
             $entityManager->flush();
@@ -44,6 +48,7 @@ class CustomerOrderController extends AbstractController
 
         return $this->render('customer_order/new.html.twig', [
             'customer_order' => $customerOrder,
+            'designs' => $designRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }

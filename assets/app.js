@@ -7,10 +7,12 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import 'jquery';
 import '/node_modules/bootstrap/dist/css/bootstrap.css';
 import '/node_modules/bootstrap/dist/css/bootstrap-reboot.css';
 import '/node_modules/bootstrap/dist/css/bootstrap-grid.css';
+import '/node_modules/featherlight/src/featherlight.css'
 
 // start the Stimulus application
 import './bootstrap';
-import 'jquery';
+import 'featherlight';

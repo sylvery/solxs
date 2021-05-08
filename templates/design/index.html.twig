@@ -1,29 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Design index{% endblock %}
+{% block title %}Designs{% endblock %}
 
 {% block body %}
-    <h1>Design index</h1>
+    <h1 class="text-info mb-3">Designs</h1>
 
-    <table class="table">
+    <table class="table table-sm small table-striped mb-3">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Sample</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for design in designs %}
             <tr>
-                <td>{{ design.id }}</td>
-                <td>{{ design.name }}</td>
-                <td>{{ design.description }}</td>
                 <td>
-                    <a href="{{ path('design_show', {'id': design.id}) }}">show</a>
-                    <a href="{{ path('design_edit', {'id': design.id}) }}">edit</a>
+                    <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
                 </td>
+                <td><a href="{{path('design_show', {'id': design.id})}}">{{ design.name }}</a></td>
+                <td>{{ design.description }}</td>
             </tr>
         {% else %}
             <tr>
@@ -33,5 +30,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('design_new') }}">Create new</a>
+    <a class="btn btn-dark btn-sm" href="{{ path('design_new') }}">Create new</a>
 {% endblock %}

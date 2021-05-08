@@ -3,9 +3,8 @@
 {% block title %}New Design{% endblock %}
 
 {% block body %}
-    <h1>Create new Design</h1>
+    <h1 class="text-info mb-3">Add new Design</h1>
 
-    {{ include('design/_form.html.twig') }}
+    {{ include('main/_form.html.twig') }}
 
-    <a href="{{ path('design_index') }}">back to list</a>
 {% endblock %}

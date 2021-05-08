@@ -2461,6 +2461,11 @@ faye-websocket@^0.11.3:
   dependencies:
     websocket-driver ">=0.5.1"
 
+featherlight@^1.7.14:
+  version "1.7.14"
+  resolved "https://registry.yarnpkg.com/featherlight/-/featherlight-1.7.14.tgz#7896909d0d7ac4672c334ba018363e519d31e4db"
+  integrity sha512-4R0Vk0pTN5IPCuMABPtXJ6hgGgoK1qwbxGB4Nf06gXovw/i+r3s/f94ksZYjsW3c2oMEAS9A8exdlNaX9YSSRQ==
+
 fill-range@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-7.0.1.tgz#1919a6a7c75fe38b2c7c77e5198535da9acdda40"

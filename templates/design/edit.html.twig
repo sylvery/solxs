@@ -3,11 +3,10 @@
 {% block title %}Edit Design{% endblock %}
 
 {% block body %}
-    <h1>Edit Design</h1>
-
-    {{ include('design/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('design_index') }}">back to list</a>
-
-    {{ include('design/_delete_form.html.twig') }}
+    <h1 class="text-info mb-3">Edit Design</h1>
+    {{ include('main/_form.html.twig', {'button_label': 'Update'}) }}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('design_index') }}">back to list</a>
+        {{ include('design/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

@@ -2,27 +2,22 @@
 
 namespace App\Form;
 
-use App\Entity\Customer;
+use App\Entity\DesignCategory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CustomerType extends AbstractType
+class DesignCategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fullName', null, [
+            ->add('title', null, [
                 'row_attr' => ['class' => 'col-md-6 input-group mb-2'],
                 'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('phoneNumber', null, [
-                'row_attr' => ['class' => 'col-md-6 input-group mb-2'],
-                'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
-                'attr' => ['class' => 'form-control'],
-            ])
-            ->add('location', null, [
+            ->add('description', null, [
                 'row_attr' => ['class' => 'col-md-6 input-group mb-2'],
                 'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
                 'attr' => ['class' => 'form-control'],
@@ -33,7 +28,7 @@ class CustomerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Customer::class,
+            'data_class' => DesignCategory::class,
         ]);
     }
 }

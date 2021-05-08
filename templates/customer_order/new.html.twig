@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New CustomerOrder{% endblock %}
+{% block title %}New Customer Order{% endblock %}
 
 {% block body %}
-    <h1>Create new CustomerOrder</h1>
+    <h1 class="text-info mb-3">Add new Customer Order</h1>
+    <div class="row">
+        <div class="col-8">
+            {{ include('main/_form.html.twig') }}
+        </div>
+        <div class="col-4">
+            {% include "customer_order/designs_widget.html.twig" %}
+        </div>
+    </div>
 
-    {{ include('customer_order/_form.html.twig') }}
-
-    <a href="{{ path('customer_order_index') }}">back to list</a>
 {% endblock %}

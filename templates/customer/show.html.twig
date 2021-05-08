@@ -3,21 +3,21 @@
 {% block title %}Customer{% endblock %}
 
 {% block body %}
-    <h1>Customer</h1>
+    <h1 class="text-info mb-3">{{customer.fullName}}</h1>
 
-    <table class="table">
+    <table class="table table-sm small table-striped mb-3">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ customer.id }}</td>
             </tr>
             <tr>
-                <th>FirstName</th>
-                <td>{{ customer.firstName }}</td>
+                <th>Name</th>
+                <td>{{ customer.fullName }}</td>
             </tr>
             <tr>
-                <th>LastName</th>
-                <td>{{ customer.lastName }}</td>
+                <th>Location</th>
+                <td>{{ customer.location }}</td>
             </tr>
             <tr>
                 <th>PhoneNumber</th>
@@ -25,10 +25,21 @@
             </tr>
         </tbody>
     </table>
+    <div>
+        <h3 class="text-info mb-3">Orders</h3>
+        <div class="list-group">
+            {% for order in customer.customerOrders %}
+                <a href="{{path('customer_order_show',{'id': order.id})}}" class="list-group-item list-group-item-action">{{order}}</a>
+            {% else %}
+                <p class="text-warning bg-dark p-3">No orders placed yet</p>
+            {% endfor %}
+            <a href="{{ path('customer_order_new') }}">Add order</a>
+        </div>
+    </div>
 
-    <a href="{{ path('customer_index') }}">back to list</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('customer_edit', {'id': customer.id}) }}">edit</a>
+        {{ include('customer/_delete_form.html.twig') }}
+    {% endif %}
 
-    <a href="{{ path('customer_edit', {'id': customer.id}) }}">edit</a>
-
-    {{ include('customer/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,22 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CustomerOrder{% endblock %}
+{% block title %}Customer Order{% endblock %}
 
 {% block body %}
-    <h1>CustomerOrder</h1>
+    <h1 class="text-info mb-3"><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{customer_order.customer.fullName}}</a></h1>
+    <p class="small text-muted">Phone: {{customer_order.customer.phoneNumber}}</p>
 
-    <table class="table">
+    <table class="table table-sm table-striped small">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ customer_order.id }}</td>
+                <th>Designs <span class="badge badge-primary">{{ customer_order.designs.count }}</span></th>
+                <td>
+                    <div class="list-inline">
+                        {% for design in customer_order.designs %}
+                            <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Date Ordered</th>
+                <td>{{customer_order.dateordered|date('F j Y')}}</td>
+            </tr>
+            <tr>
+                <th>Designed</th>
+                <td>{{customer_order.designed}}</td>
+            </tr>
+            <tr>
+                <th>Printed</th>
+                <td>{{customer_order.printed}} <span class="float-right">Date: {{customer_order.dateprinted|date('F j Y')}}</span></td>
+            </tr>
+            <tr>
+                <th>Paid</th>
+                <td>{{customer_order.paid}}</td>
+            </tr>
+            <tr>
+                <th>Delivery location</th>
+                <td>{{customer_order.deliveryLocation}} <span class="float-right">Date: {{customer_order.datedelivered|date('F j Y')}}</span></td>
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('customer_order_index') }}">back to list</a>
-
-    <a href="{{ path('customer_order_edit', {'id': customer_order.id}) }}">edit</a>
-
-    {{ include('customer_order/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %}    
+        <a href="{{ path('customer_order_index') }}">back to list</a>
+        <a href="{{ path('customer_order_edit', {'id': customer_order.id}) }}">edit</a>
+        {{ include('customer_order/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

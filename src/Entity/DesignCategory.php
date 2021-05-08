@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DesignCategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,21 @@ class DesignCategory
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Design::class, mappedBy="category")
+     */
+    private $designs;
+
+    public function __construct()
+    {
+        $this->designs = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +69,36 @@ class DesignCategory
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Design[]
+     */
+    public function getDesigns(): Collection
+    {
+        return $this->designs;
+    }
+
+    public function addDesign(Design $design): self
+    {
+        if (!$this->designs->contains($design)) {
+            $this->designs[] = $design;
+            $design->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDesign(Design $design): self
+    {
+        if ($this->designs->removeElement($design)) {
+            // set the owning side to null (unless already changed)
+            if ($design->getCategory() === $this) {
+                $design->setCategory(null);
+            }
+        }
 
         return $this;
     }

@@ -1,0 +1,12 @@
+<div class="card-columns">
+    {% for design in designs %}
+        <div class="card">
+            {# <img src="holder.js/100x180/" alt=""> #}
+            <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+            <div class="card-body p-2">
+                {# <h4 class="card-title">Title</h4> #}
+                <p class="card-text small">{{design.name}}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

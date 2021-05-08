@@ -22,12 +22,12 @@ class Customer
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $firstName;
+    private $fullName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lastName;
+    private $location;
 
     /**
      * @ORM\Column(type="string", length=16)
@@ -44,31 +44,36 @@ class Customer
         $this->customerOrders = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getFullName();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFirstName(): ?string
+    public function getFullName(): ?string
     {
-        return $this->firstName;
+        return $this->fullName;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setFullName(string $fullName): self
     {
-        $this->firstName = $firstName;
+        $this->fullName = $fullName;
 
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getLocation(): ?string
     {
-        return $this->lastName;
+        return $this->location;
     }
 
-    public function setLastName(string $lastName): self
+    public function setLocation(string $location): self
     {
-        $this->lastName = $lastName;
+        $this->location = $location;
 
         return $this;
     }

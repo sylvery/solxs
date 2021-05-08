@@ -79,6 +79,11 @@ class MenuBuilder
             'attributes' => ['class'=>'nav-item text-center'],
             'linkAttributes' => ['class'=>'nav-link']
         ]);
+        $menu->addChild('Category', [
+            'route' => 'design_category_index',
+            'attributes' => ['class'=>'nav-item text-center'],
+            'linkAttributes' => ['class'=>'nav-link']
+        ]);
         return $menu;
     }
 }

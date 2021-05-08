@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Design;
 use App\Form\DesignType;
 use App\Repository\DesignRepository;
+use DateTime;
+use DateTimeZone;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +37,13 @@ class DesignController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $design
+                ->setUpdatedAt(new DateTime('now', new DateTimeZone('Pacific/Port_Moresby')))
+                ->setImageName($design->getImageFile()->getClientOriginalName())
+                // ->setImageSize($design->getImageFile()->getImageSize())
+            ;
+            $design->setImageSize($design->getImageFile()->getSize());
+            // dump($form, $design); exit;
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($design);
             $entityManager->flush();
