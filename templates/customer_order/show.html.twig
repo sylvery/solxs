@@ -17,7 +17,7 @@
             <h1>Designs <span class="badge badge-primary">{{ customer_order.designs.count }}</span></h1>
             <div class="list-inline">
                 {% for design in customer_order.designs %}
-                    <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+                    <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100%;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
                 {% endfor %}
             </div>
         </div>

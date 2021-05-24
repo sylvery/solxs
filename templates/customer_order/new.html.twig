@@ -8,14 +8,14 @@
         <div class="col-8">
             {{ form_start(form) }}
                 {{ form_row(form.customer) }}
-                {# {{ form_widget(form.designs)}} #}
-                Designs
+                {{ form_widget(form.designs)}}
+                {# Designs
                 <div class="input-group row justify-content-center align-items-center">
                 {% for item in form.designs %}
-                    {# {{ dump(item)}} #}
+                    {# {{ dump(item)}}
                     {{ form_row(item, {'label_attr':{'class':'input-group-prepend'},'row_attr':{'class':'mx-3'}}) }}
                 {% endfor %}
-                </div>
+                </div> #}
                 {{ form_row(form.color) }}
                 {{ form_row(form.itemsize) }}
                 {{ form_row(form.orientation) }}

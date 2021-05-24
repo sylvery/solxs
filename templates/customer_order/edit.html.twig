@@ -6,9 +6,9 @@
     <h1>Edit CustomerOrder</h1>
 
     <p>This order is currently in <span class="badge badge-primary"><em>{{customer_order.currentState|keys|json_encode|replace({"\"":'',"[":'',"]":''})}}</em></span></p>
-    {{ include('customer_order/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('customer_order_index') }}">back to list</a>
-
-    {{ include('customer_order/_delete_form.html.twig') }}
+    <div class="row">
+        <div class="col-12">
+            {{ include('customer_order/_form.html.twig', {'button_label': 'update'}) }}
+        </div>
+    </div>
 {% endblock %}

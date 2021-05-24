@@ -35,8 +35,8 @@ class CustomerOrderType extends AbstractType
                         'attr' => ['class' => 'form-control'],
                     ])
                     ->add('designs', null, [
-                        'expanded' => true,
-                        'multiple' => true,
+                        // 'expanded' => false,
+                        // 'multiple' => true,
                         // 'class' => Design::class,
                         // 'choices' => $group->getDesigns(),
                         'row_attr' => ['class' => 'row'],

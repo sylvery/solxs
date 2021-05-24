@@ -86,8 +86,12 @@ class CustomerOrderController extends AbstractController
         $workflow = $this->wfr->get($customerOrder,'orders');
         
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($workflow->can($customerOrder, 'to_print')) {
-                // return $this->redirectToRoute('customer_order_new');
+            if ($workflow->can($customerOrder, 'to_design')) {
+                $workflow->apply($customerOrder, 'to_design');
+            } else if ($workflow->can($customerOrder, 'to_print')) {
+                $workflow->apply($customerOrder, 'to_print');
+            } else if ($workflow->can($customerOrder, 'to_deliver')) {
+                $workflow->apply($customerOrder, 'to_deliver');
             }
             $this->getDoctrine()->getManager()->flush();
 

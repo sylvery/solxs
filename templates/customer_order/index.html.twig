@@ -11,6 +11,7 @@
                 <th>Customer</th>
                 <th>Designs</th>
                 <th>Description</th>
+                <th>Date Ordered</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -21,6 +22,7 @@
                     <td><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{ customer_order.customer }}</a></td>
                     <td><a class="btn btn-sm btn-dark" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">{{ customer_order.designs.count }}</a></td>
                     <td>{{ customer_order.description }}</td>
+                    <td>{{ customer_order.dateordered|date('jS F') }}</td>
                     <td>{{ customer_order.currentState|json_encode }}</td>
                 </tr>
             {% endif %}
