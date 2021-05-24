@@ -36,48 +36,83 @@ class MenuBuilder
                 'class' => 'nav-link'
             ],
         ]);
-        // $plantAssets = $menu->addChild('Customers', [
-        //     'attributes' => [
-        //         'class' => 'dropdown',
-        //     ],
-        //     'childrenAttributes' => [
-        //         'class' => 'dropdown-menu bg-light mt-0',
-        //     ],
-        //     'labelAttributes' => [
-        //         'class' => 'btn btn-default nav-link dropdown-toggle',
-        //         // 'style' => 'font-size: 1rem !important;',
-        //         'type' => 'button',
-        //         'id' => 'plantAssetMenuDropdownTriggerId',
-        //         'data-toggle' => 'dropdown',
-        //         'aria-haspopup' => 'true',
-        //     ]
-        // ]);
-        // $plantAssets
-        //     ->addChild('List of Plant Assets', [
-        //         'route'=>'home',
-        //         'attributes' => ['class' => 'nav-item'],
-        //         'linkAttributes' => ['class' => 'nav-link'],
-        //     ])
-        //     ->addChild('Add new plant assets', [
-        //         'route'=>'home',
-        //         'attributes' => ['class' => 'nav-item'],
-        //         'linkAttributes' => ['class' => 'nav-link small'],
-        //     ])
-        // ;
-        $menu->addChild('Customer', [
-            'route' => 'customer_index',
-            'attributes' => ['class'=>'nav-item text-center'],
-            'linkAttributes' => ['class'=>'nav-link']
+        $orders = $menu->addChild('Orders', [
+            'attributes' => [
+                'class' => 'dropdown',
+            ],
+            'childrenAttributes' => [
+                'class' => 'dropdown-menu bg-light mt-0',
+            ],
+            'labelAttributes' => [
+                'class' => 'btn btn-default nav-link dropdown-toggle',
+                // 'style' => 'font-size: 1rem !important;',
+                'type' => 'button',
+                'id' => 'ordersDropdown',
+                'data-toggle' => 'dropdown',
+                'aria-haspopup' => 'true',
+            ]
         ]);
-        $menu->addChild('Orders', [
-            'route' => 'customer_order_index',
-            'attributes' => ['class'=>'nav-item text-center'],
-            'linkAttributes' => ['class'=>'nav-link']
+        $orders->addChild('List of Orders', [
+            'route'=>'customer_order_index',
+            'attributes' => ['class' => 'nav-item'],
+            'linkAttributes' => ['class' => 'nav-link'],
         ]);
-        $menu->addChild('Designs', [
-            'route' => 'design_index',
-            'attributes' => ['class'=>'nav-item text-center'],
-            'linkAttributes' => ['class'=>'nav-link']
+        $orders->addChild('Add new Order', [
+            'route'=>'customer_order_new',
+            'attributes' => ['class' => 'nav-item'],
+            'linkAttributes' => ['class' => 'nav-link'],
+        ]);
+        $customers = $menu->addChild('Customers', [
+            'attributes' => [
+                'class' => 'dropdown',
+            ],
+            'childrenAttributes' => [
+                'class' => 'dropdown-menu bg-light mt-0',
+            ],
+            'labelAttributes' => [
+                'class' => 'btn btn-default nav-link dropdown-toggle',
+                // 'style' => 'font-size: 1rem !important;',
+                'type' => 'button',
+                'id' => 'customersDropdown',
+                'data-toggle' => 'dropdown',
+                'aria-haspopup' => 'true',
+            ]
+        ]);
+        $customers->addChild('List of Customers', [
+            'route'=>'customer_index',
+            'attributes' => ['class' => 'nav-item'],
+            'linkAttributes' => ['class' => 'nav-link'],
+        ]);
+        $customers->addChild('Add new Customer', [
+            'route'=>'customer_new',
+            'attributes' => ['class' => 'nav-item'],
+            'linkAttributes' => ['class' => 'nav-link'],
+        ]);
+        $designs = $menu->addChild('Designs', [
+            'attributes' => [
+                'class' => 'dropdown',
+            ],
+            'childrenAttributes' => [
+                'class' => 'dropdown-menu bg-light mt-0',
+            ],
+            'labelAttributes' => [
+                'class' => 'btn btn-default nav-link dropdown-toggle',
+                // 'style' => 'font-size: 1rem !important;',
+                'type' => 'button',
+                'id' => 'designsDropdown',
+                'data-toggle' => 'dropdown',
+                'aria-haspopup' => 'true',
+            ]
+        ]);
+        $designs->addChild('List of Designs', [
+            'route'=>'design_index',
+            'attributes' => ['class' => 'nav-item'],
+            'linkAttributes' => ['class' => 'nav-link'],
+        ]);
+        $designs->addChild('Add new Design', [
+            'route'=>'design_new',
+            'attributes' => ['class' => 'nav-item'],
+            'linkAttributes' => ['class' => 'nav-link'],
         ]);
         $menu->addChild('Category', [
             'route' => 'design_category_index',

@@ -12,12 +12,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Workflow\Registry;
 
 /**
  * @Route("/order")
  */
 class CustomerOrderController extends AbstractController
 {
+    private $wfr;
+    public function __construct(Registry $wfr)
+    {
+        $this->wfr = $wfr;
+    }
+
     /**
      * @Route("/", name="customer_order_index", methods={"GET"})
      */
@@ -39,6 +46,11 @@ class CustomerOrderController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $customerOrder->setDateordered(new DateTime($customerOrder->getDateordered(), new DateTimeZone('Pacific/Port_Moresby')));
+            $workflow = $this->wfr->get($customerOrder, 'orders');
+            if($workflow->can($customerOrder, 'to_order')) {
+                $workflow->apply($customerOrder, 'to_order');
+                $customerOrder->setDateordered(new DateTime('now', new DateTimeZone('Pacific/Port_Moresby')));
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($customerOrder);
             $entityManager->flush();
@@ -71,7 +83,12 @@ class CustomerOrderController extends AbstractController
         $form = $this->createForm(CustomerOrderType::class, $customerOrder);
         $form->handleRequest($request);
 
+        $workflow = $this->wfr->get($customerOrder,'orders');
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($workflow->can($customerOrder, 'to_print')) {
+                // return $this->redirectToRoute('customer_order_new');
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('customer_order_index');

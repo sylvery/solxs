@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Design;
 use App\Form\DesignType;
+use App\Repository\DesignCategoryRepository;
 use App\Repository\DesignRepository;
 use DateTime;
 use DateTimeZone;
@@ -20,10 +21,24 @@ class DesignController extends AbstractController
     /**
      * @Route("/", name="design_index", methods={"GET"})
      */
-    public function index(DesignRepository $designRepository): Response
+    public function index(DesignRepository $designRepository, DesignCategoryRepository $dcr): Response
     {
+        $dcarr = [];
+        foreach($dcr->findAll() as $dc) {
+            $darr = [];
+            foreach ($designRepository->findAll() as $d) {
+                if ($d->getCategory() == $dc) {
+                    array_push($darr,$d);
+                }
+            }
+            if ($darr != null) {
+                array_push($dcarr,['category'=>$dc,'designs'=>$darr]);
+            }
+        }
+        // dump($dcarr); exit;
         return $this->render('design/index.html.twig', [
-            'designs' => $designRepository->findAll(),
+            'designs' => $dcarr,
+            'ds' => $designRepository->findAll(),
         ]);
     }
 
@@ -76,6 +91,7 @@ class DesignController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $design->setUpdatedAt(new DateTime('now', new DateTimeZone('Pacific/Port_Moresby')));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('design_index');

@@ -79,7 +79,7 @@ class Design
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->getName() . ' (' . $this->getCategory() . ')';
     }
 
     public function getId(): ?int

@@ -6,7 +6,24 @@
     <h1 class="text-info mb-3 display-4">Add new Customer Order</h1>
     <div class="row">
         <div class="col-8">
-            {{ include('main/_form.html.twig') }}
+            {{ form_start(form) }}
+                {{ form_row(form.customer) }}
+                {# {{ form_widget(form.designs)}} #}
+                Designs
+                <div class="input-group row justify-content-center align-items-center">
+                {% for item in form.designs %}
+                    {# {{ dump(item)}} #}
+                    {{ form_row(item, {'label_attr':{'class':'input-group-prepend'},'row_attr':{'class':'mx-3'}}) }}
+                {% endfor %}
+                </div>
+                {{ form_row(form.color) }}
+                {{ form_row(form.itemsize) }}
+                {{ form_row(form.orientation) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.deliveryLocation) }}
+                <button class="btn btn-success btn-block">{{ button_label|default('place order') }}</button>
+            {{ form_end(form) }}
+
         </div>
         <div class="col-4">
             {% include "customer_order/designs_widget.html.twig" %}

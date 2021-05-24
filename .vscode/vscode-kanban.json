@@ -1,0 +1,36 @@
+{
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "sylvery"
+      },
+      "creation_time": "2021-05-23T08:44:43.304Z",
+      "description": {
+        "content": "create authentication feature for users to be able to authenticate",
+        "mime": "text/markdown"
+      },
+      "id": "1",
+      "prio": 1,
+      "references": [],
+      "title": "Authentication"
+    }
+  ],
+  "in-progress": [
+    {
+      "assignedTo": {
+        "name": "sylvery"
+      },
+      "creation_time": "2021-05-23T11:52:31.633Z",
+      "description": {
+        "content": "change check boxes to radio boxes",
+        "mime": "text/markdown"
+      },
+      "id": "2",
+      "prio": 1,
+      "references": [],
+      "title": "Designs in Order to be Radio"
+    }
+  ],
+  "testing": [],
+  "done": []
+}

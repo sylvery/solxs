@@ -10,11 +10,13 @@
         <div class="col-8 content">
             <h1 class="text-info mb-3 display-4">{{design.name}}</h1>
             <p>{{ design.description }}</p>
+            <div class="btn-group mb-3">
+                <a class="btn btn-sm btn-secondary" href="{{ path('design_index') }}">back to list</a>
+                <a class="btn btn-sm btn-warning" href="{{ path('design_edit', {'id': design.id}) }}">edit</a>
+                {{ include('design/_delete_form.html.twig') }}
+            </div>
         </div>
     </div>
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('design_index') }}">back to list</a>
-        <a href="{{ path('design_edit', {'id': design.id}) }}">edit</a>
-        {{ include('design/_delete_form.html.twig') }}
-    {% endif %}
+    {# {% if is_granted('ROLE_ADMIN') %} #}
+    {# {% endif %} #}
 {% endblock %}

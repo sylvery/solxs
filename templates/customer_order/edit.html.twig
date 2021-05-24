@@ -5,6 +5,7 @@
 {% block body %}
     <h1>Edit CustomerOrder</h1>
 
+    <p>This order is currently in <span class="badge badge-primary"><em>{{customer_order.currentState|keys|json_encode|replace({"\"":'',"[":'',"]":''})}}</em></span></p>
     {{ include('customer_order/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('customer_order_index') }}">back to list</a>

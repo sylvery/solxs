@@ -4,45 +4,69 @@
 
 {% block body %}
     <h1 class="text-info mb-3 display-4"><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{customer_order.customer.fullName}}</a></h1>
-    <p class="small text-muted">Phone: {{customer_order.customer.phoneNumber}}</p>
-
-    <table class="table table-sm table-striped small">
-        <tbody>
-            <tr>
-                <th>Designs <span class="badge badge-primary">{{ customer_order.designs.count }}</span></th>
-                <td>
-                    <div class="list-inline">
-                        {% for design in customer_order.designs %}
-                            <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
-                        {% endfor %}
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th>Date Ordered</th>
-                <td>{{customer_order.dateordered|date('F j Y')}}</td>
-            </tr>
-            <tr>
-                <th>Designed</th>
-                <td>{{customer_order.designed}}</td>
-            </tr>
-            <tr>
-                <th>Printed</th>
-                <td>{{customer_order.printed}} <span class="float-right">Date: {{customer_order.dateprinted|date('F j Y')}}</span></td>
-            </tr>
-            <tr>
-                <th>Paid</th>
-                <td>{{customer_order.paid}}</td>
-            </tr>
-            <tr>
-                <th>Delivery location</th>
-                <td>{{customer_order.deliveryLocation}} <span class="float-right">Date: {{customer_order.datedelivered|date('F j Y')}}</span></td>
-            </tr>
-        </tbody>
-    </table>
-    {% if is_granted('ROLE_ADMIN') %}    
-        <a href="{{ path('customer_order_index') }}">back to list</a>
-        <a href="{{ path('customer_order_edit', {'id': customer_order.id}) }}">edit</a>
+    <p class="small text-muted mb-3">Phone: {{customer_order.customer.phoneNumber}}</p>
+    {# {% if is_granted('ROLE_ADMIN') %}     #}
+    <div class="btn-group mb-3">
+        <a class="btn btn-sm btn-secondary" href="{{ path('customer_order_index') }}">back to list</a>
+        <a class="btn btn-sm btn-warning" href="{{ path('customer_order_edit', {'id': customer_order.id}) }}">edit</a>
         {{ include('customer_order/_delete_form.html.twig') }}
-    {% endif %}
+    </div>
+    {# {% endif %} #}
+    <div class="row mb-3">
+        <div class="col-4">
+            <h1>Designs <span class="badge badge-primary">{{ customer_order.designs.count }}</span></h1>
+            <div class="list-inline">
+                {% for design in customer_order.designs %}
+                    <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-8">
+            <table class="table table-sm table-striped small">
+                <tbody>
+                    <tr>
+                        <th>Order details/description</th>
+                        <td>{{customer_order.description}}</td>
+                    </tr>
+                    <tr>
+                        <th>Item Color</th>
+                        <td>{{customer_order.color}}</td>
+                    </tr>
+                    <tr>
+                        <th>Orientation</th>
+                        <td>{{customer_order.orientation}}</td>
+                    </tr>
+                    <tr>
+                        <th>Size</th>
+                        <td>{{customer_order.itemsize}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date Ordered</th>
+                        <td>{{customer_order.dateordered|date('F j Y')}}</td>
+                    </tr>
+                    <tr>
+                        <th>Designed</th>
+                        <td>{{customer_order.designed}}</td>
+                    </tr>
+                    <tr>
+                        <th>Printed</th>
+                        <td>{{customer_order.printed}} <span class="float-right">Date: {{customer_order.dateprinted|date('F j Y')}}</span></td>
+                    </tr>
+                    <tr>
+                        <th>Paid</th>
+                        <td>{{customer_order.paid}}</td>
+                    </tr>
+                    <tr>
+                        <th>Delivery location</th>
+                        <td>{{customer_order.deliveryLocation}} <span class="float-right">Date: {{customer_order.datedelivered|date('F j Y')}}</span></td>
+                    </tr>
+                    <tr>
+                        <th>Filename</th>
+                        <td>{{customer_order.customer.fullName|replace({" ":"_"})}}-{{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

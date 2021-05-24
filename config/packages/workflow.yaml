@@ -1,0 +1,35 @@
+framework:
+    workflows: 
+        orders:
+            type: 'workflow'
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: 'method'
+                property: 'currentState'
+            supports:
+                - App\Entity\CustomerOrder
+            initial_marking: draft
+            places:
+                - draft
+                - ordered
+                - designed
+                - printed
+                - reprinted
+                - delivered
+            transitions:
+                to_order:
+                    from: draft
+                    to:   ordered
+                to_design:
+                    from: ordered
+                    to:   designed
+                to_print:
+                    from: designed
+                    to:   printed
+                to_reprint:
+                    from: printed
+                    to:   reprinted
+                to_deliver:
+                    from: [printed, reprinted]
+                    to:   delivered

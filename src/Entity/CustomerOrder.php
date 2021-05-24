@@ -83,6 +83,26 @@ class CustomerOrder
      */
     private $printsubmitted;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $currentState = [];
+
+    /**
+     * @ORM\Column(type="string", length=24, nullable=true)
+     */
+    private $color;
+
+    /**
+     * @ORM\Column(type="string", length=24, nullable=true)
+     */
+    private $orientation;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $itemsize;
+
     public function __construct()
     {
         $this->designs = new ArrayCollection();
@@ -262,6 +282,54 @@ class CustomerOrder
     public function setStatus(?bool $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getCurrentState(): ?array
+    {
+        return $this->currentState;
+    }
+
+    public function setCurrentState(?array $currentState): self
+    {
+        $this->currentState = $currentState;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function getOrientation(): ?string
+    {
+        return $this->orientation;
+    }
+
+    public function setOrientation(?string $orientation): self
+    {
+        $this->orientation = $orientation;
+
+        return $this;
+    }
+
+    public function getItemsize(): ?string
+    {
+        return $this->itemsize;
+    }
+
+    public function setItemsize(string $itemsize): self
+    {
+        $this->itemsize = $itemsize;
 
         return $this;
     }

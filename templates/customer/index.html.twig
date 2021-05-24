@@ -5,29 +5,22 @@
 {% block body %}
     <h1 class="text-info mb-3 display-4">Customers</h1>
     <a class="btn btn-sm btn-success mb-3" href="{{ path('customer_new') }}">add new customer</a>
-    <table class="table table-sm small">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>PhoneNumber</th>
-                <th>Location</th>
-                <th>Orders</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for customer in customers %}
-            <tr>
-                <td><a href="{{ path('customer_show', {'id': customer.id}) }}">{{ customer.fullName }}</a></td>
-                <td>{{ customer.phoneNumber }}</td>
-                <td>{{ customer.location }}</td>
-                <td><a href="{{ path('customer_show', {'id': customer.id}) }}">{{ customer.customerOrders.count }}</a></td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card-columns">
+                {% for customer in customers %}
+                <div class="card">
+                    <div class="card-body">
+                        <a class="h3 card-title" href="{{ path('customer_show', {'id': customer.id}) }}">{{ customer.fullName }}</a>
+                        <div class="card-text"><span class="text-muted small">Phone Number:</span> {{ customer.phoneNumber }}</div>
+                        <div class="card-text"><span class="text-muted small">Location:</span> {{ customer.location }}</div>
+                        <div class="card-text"><span class="text-muted small">Orders:</span> <a href="{{ path('customer_show', {'id': customer.id}) }}">{{ customer.customerOrders.count }} / {{ customer.customerOrders.count }}</a></div>
+                    </div>
+                </div>
+                {% else %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
