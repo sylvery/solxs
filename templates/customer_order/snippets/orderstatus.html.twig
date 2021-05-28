@@ -1,0 +1,11 @@
+{% if (workflow_can(customer_order,'to_order')) %}
+    <span class="bg-primary text-light p-1">ordering</span>
+{% elseif (workflow_can(customer_order,'to_design')) %}
+    <span class="bg-warning text-dark p-1">designing</span>
+{% elseif (workflow_can(customer_order,'to_print')) %}
+    <span class="bg-danger text-light p-1">printing</span>
+{% elseif (workflow_can(customer_order,'to_deliver')) %}
+    <span class="bg-success text-light p-1">delivering</span>
+{% else %}
+    <span class="bg-muted text-dark p-1">delivered</span>
+{% endif %}

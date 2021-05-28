@@ -10,12 +10,18 @@
         <div class="col-xs-12">
             <div class="card-columns">
                 {% for customer in customers %}
+                    {% set completed = 0 %}
+                    {% for order in customer.customerOrders %}
+                        {% if order.status is not null %}
+                            {% set completed = completed + 1 %}
+                        {% endif %}
+                    {% endfor %}
                 <div class="card">
                     <div class="card-body">
                         <a class="h3 card-title" href="{{ path('customer_show', {'id': customer.id}) }}">{{ customer.fullName }}</a>
                         <div class="card-text"><span class="text-muted small">Phone Number:</span> {{ customer.phoneNumber }}</div>
                         <div class="card-text"><span class="text-muted small">Location:</span> {{ customer.location }}</div>
-                        <div class="card-text"><span class="text-muted small">Orders:</span> <a href="{{ path('customer_show', {'id': customer.id}) }}">{{ customer.customerOrders.count }} / {{ customer.customerOrders.count }}</a></div>
+                        <div class="card-text"><span class="text-muted small">Orders:</span> <a href="{{ path('customer_show', {'id': customer.id}) }}">{{ completed }} / {{ customer.customerOrders.count }}</a></div>
                     </div>
                 </div>
                 {% else %}

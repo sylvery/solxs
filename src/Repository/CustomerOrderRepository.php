@@ -19,6 +19,15 @@ class CustomerOrderRepository extends ServiceEntityRepository
         parent::__construct($registry, CustomerOrder::class);
     }
 
+    public function findAll()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.dateordered', 'desc')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return CustomerOrder[] Returns an array of CustomerOrder objects
     //  */

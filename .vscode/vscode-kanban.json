@@ -13,24 +13,36 @@
       "prio": 1,
       "references": [],
       "title": "Authentication"
-    }
-  ],
-  "in-progress": [
+    },
     {
       "assignedTo": {
         "name": "sylvery"
       },
-      "creation_time": "2021-05-23T11:52:31.633Z",
+      "creation_time": "2021-05-25T00:52:43.387Z",
       "description": {
-        "content": "change check boxes to radio boxes",
+        "content": "The system should be able to generate a report and send it out as CSV",
         "mime": "text/markdown"
       },
-      "id": "2",
-      "prio": 1,
+      "id": "4",
       "references": [],
-      "title": "Designs in Order to be Radio"
+      "title": "Export report as CSV"
     }
   ],
+  "in-progress": [],
   "testing": [],
-  "done": []
+  "done": [
+    {
+      "assignedTo": {
+        "name": "sylvery"
+      },
+      "creation_time": "2021-05-24T14:02:09.880Z",
+      "description": {
+        "content": "display pending orders separately from completed orders",
+        "mime": "text/markdown"
+      },
+      "id": "3",
+      "references": [],
+      "title": "Pending/Completed Orders"
+    }
+  ]
 }

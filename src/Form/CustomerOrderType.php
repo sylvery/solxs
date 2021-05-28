@@ -39,7 +39,8 @@ class CustomerOrderType extends AbstractType
                         // 'multiple' => true,
                         // 'class' => Design::class,
                         // 'choices' => $group->getDesigns(),
-                        'row_attr' => ['class' => 'row'],
+                        // 'row_attr' => ['class' => 'row'],
+                        'row_attr' => ['class' => 'col-12 input-group my-2'],
                         'label_attr' => ['class' => 'col-4 text-muted'],
                         'attr' => ['class' => 'col'],
                     ])
@@ -103,20 +104,104 @@ class CustomerOrderType extends AbstractType
                         'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
                         'attr' => ['class' => 'form-control'],
                     ])
-                    ;
-                } else if($workflow->can($data, 'to_deliver')){
-                    $form
-                        ->add('paid', null, [
-                            'row_attr' => ['class' => 'col-12 input-group form-inline mb-2'],
-                            'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
-                            'attr' => ['class' => 'form-control'],
-                        ])
-                        ->add('delivered', null, [
-                            'row_attr' => ['class' => 'col-12 input-group form-inline mb-2'],
-                            'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
-                            'attr' => ['class' => 'form-control'],
-                        ])
-                    ;
+                ;
+            } else if($workflow->can($data, 'to_deliver')){
+                $form
+                    ->add('paid', null, [
+                        'row_attr' => ['class' => 'col-12 input-group form-inline mb-2'],
+                        'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('delivered', null, [
+                        'row_attr' => ['class' => 'col-12 input-group form-inline mb-2'],
+                        'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                ;
+            } else {
+                $form
+                    ->add('customer', null, [
+                        'required' => 'required',
+                        'row_attr' => ['class' => 'col-12 input-group mb-2'],
+                        'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('designs', null, [
+                        // 'expanded' => false,
+                        // 'multiple' => true,
+                        // 'class' => Design::class,
+                        // 'choices' => $group->getDesigns(),
+                        'row_attr' => ['class' => 'row'],
+                        'label_attr' => ['class' => 'col-4 text-muted'],
+                        'attr' => ['class' => 'col'],
+                    ])
+                    ->add('color', ChoiceType::class, [
+                        'choices' => [
+                            'White' => 'white',
+                            'Black' => 'black',
+                            'Medium blue' => 'medium blue',
+                            'Navy' => 'navy',
+                            'Red' => 'red',
+                            'Maroon' => 'maroon',
+                        ],
+                        'row_attr' => ['class' => 'col-12 input-group my-2'],
+                        'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                        'attr' => ['class' => 'form-control', 'type' => 'color'],
+                    ])
+                    ->add('orientation', ChoiceType::class, [
+                        'choices' => [
+                            'Front' => 'front',
+                            'Back' => 'back',
+                        ],
+                        'row_attr' => ['class' => 'col-12 input-group mb-2'],
+                        'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('itemsize', ChoiceType::class, [
+                        'choices' => [
+                            'Kids' => 'kids',
+                            'Small' => 'small',
+                            'Medium' => 'medium',
+                            'Large' => 'large',
+                            'Extra Large' => 'xl',
+                            '2x Extra Large' => 'xxl',
+                            '3x Extra Large' => '3xl',
+                        ],
+                        'row_attr' => ['class' => 'col-12 input-group mb-2'],
+                        'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('description', null, [
+                        'row_attr' => ['class' => 'col-12 input-group mb-2'],
+                        'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('deliveryLocation', null, [
+                        'row_attr' => ['class' => 'col-12 input-group mb-2'],
+                        'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('designed', null, [
+                        'row_attr' => ['class' => 'col-3 input-group form-inline mb-2'],
+                        'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('printed', null, [
+                        'row_attr' => ['class' => 'col-3 input-group form-inline mb-2'],
+                        'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('paid', null, [
+                        'row_attr' => ['class' => 'col-3 input-group form-inline mb-2'],
+                        'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('delivered', null, [
+                        'row_attr' => ['class' => 'col-3 input-group form-inline mb-2'],
+                        'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                ;
             }
         });
     }

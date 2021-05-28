@@ -35,7 +35,7 @@
         <h3 class="text-info mb-3">Orders</h3>
         <div class="list-group">
             {% for order in customer.customerOrders %}
-                <a href="{{path('customer_order_show',{'id': order.id})}}" class="list-group-item list-group-item-action">{{order}}</a>
+                <a href="{{path('customer_order_show',{'id': order.id})}}" class="list-group-item list-group-item-action {{ order.status ? 'bg-success text-light'}}">{{order}}</a>
             {% else %}
                 <p class="text-warning bg-dark p-3">No orders placed yet</p>
             {% endfor %}

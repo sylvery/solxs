@@ -15,9 +15,11 @@ framework:
                 - ordered
                 - designed
                 - printed
-                - reprinted
                 - delivered
             transitions:
+                # to_draft:
+                #     from: [ordered,designed,printed]
+                #     to:   draft
                 to_order:
                     from: draft
                     to:   ordered
@@ -27,9 +29,6 @@ framework:
                 to_print:
                     from: designed
                     to:   printed
-                to_reprint:
-                    from: printed
-                    to:   reprinted
                 to_deliver:
-                    from: [printed, reprinted]
+                    from: printed
                     to:   delivered

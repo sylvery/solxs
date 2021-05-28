@@ -1,38 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pending Customer Orders{% endblock %}
+{% block title %}Customer Orders{% endblock %}
 
 {% block body %}
-    <h1 class="text-info mb-3 display-4"><span class="text-danger">Pending</span> Orders</h1>
-
-    <table class="table table-sm small table-striped mb-3">
-        <thead>
-            <tr>
-                <th>Customer</th>
-                <th>Designs</th>
-                <th>Description</th>
-                <th>Date Ordered</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for customer_order in customer_orders %}
-            {% if customer_order.status is null %}
-                <tr>
-                    <td><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{ customer_order.customer }}</a></td>
-                    <td><a class="btn btn-sm btn-dark" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">{{ customer_order.designs.count }}</a></td>
-                    <td>{{ customer_order.description }}</td>
-                    <td>{{ customer_order.dateordered|date('jS F') }}</td>
-                    <td>{{ customer_order.currentState|json_encode }}</td>
-                </tr>
-            {% endif %}
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a class="btn btn-sm btn-dark" href="{{ path('customer_order_new') }}">Create new</a>
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <h1 class="text-info mb-3 display-4">Customer Orders</h1>
+            <table class="table table-sm small table-striped mb-3">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Orders</th>
+                        <th>Description</th>
+                        <th>Date Ordered</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for customer_order in customer_orders %}
+                    {% if customer_order.status is null %}
+                        <tr>
+                            <td><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{ customer_order.customer }}</a></td>
+                            <td><a class="btn btn-dark" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">{{ customer_order.designs.count }}</a></td>
+                            <td class="w-50">{{ customer_order.description }}</td>
+                            <td>{{ customer_order.dateordered|date('jS F') }}</td>
+                            <td>
+                                {% include "customer_order/snippets/orderstatus.html.twig" %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h3 class="text-info my-3">Completed</h3>
+            <div class="list-group list-group-flush">
+                {% for customer_order in customer_orders %}
+                    {% if customer_order.status is not null %}
+                        <a class="list-group-item list-group-item-action small border-primary text-info p-1" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">{{ customer_order.customer }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

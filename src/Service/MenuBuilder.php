@@ -114,7 +114,7 @@ class MenuBuilder
             'attributes' => ['class' => 'nav-item'],
             'linkAttributes' => ['class' => 'nav-link'],
         ]);
-        $menu->addChild('Category', [
+        $designs->addChild('Categories', [
             'route' => 'design_category_index',
             'attributes' => ['class'=>'nav-item text-center'],
             'linkAttributes' => ['class'=>'nav-link']

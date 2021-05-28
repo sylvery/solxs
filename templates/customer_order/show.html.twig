@@ -25,6 +25,12 @@
             <table class="table table-sm table-striped small">
                 <tbody>
                     <tr>
+                        <th>Status</th>
+                        <td>
+                            {% include "customer_order/snippets/orderstatus.html.twig" %}
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Order details/description</th>
                         <td>{{customer_order.description}}</td>
                     </tr>

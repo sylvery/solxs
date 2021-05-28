@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit CustomerOrder{% endblock %}
+{% block title %}Update Order{% endblock %}
 
 {% block body %}
-    <h1>Edit CustomerOrder</h1>
+    <h1 class="display-4 text-info">Update Order</h1>
 
     <p>This order is currently in <span class="badge badge-primary"><em>{{customer_order.currentState|keys|json_encode|replace({"\"":'',"[":'',"]":''})}}</em></span></p>
     <div class="row">
