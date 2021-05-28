@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="display-4 text-info">Update Order</h1>
 
-    <p>This order is currently in <span class="badge badge-primary"><em>{{customer_order.currentState|keys|json_encode|replace({"\"":'',"[":'',"]":''})}}</em></span></p>
+    <p>This order has been <span class="badge badge-primary p-2"><em>{{customer_order.currentState|keys|json_encode|replace({"\"":'',"[":'',"]":''})}}</em></span>. It is currently {% include "customer_order/snippets/orderstatus.html.twig" %}</p>
     <div class="row">
         <div class="col-12">
             {{ include('customer_order/_form.html.twig', {'button_label': 'update'}) }}

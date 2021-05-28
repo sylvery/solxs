@@ -49,7 +49,7 @@ class CustomerOrderController extends AbstractController
             $workflow = $this->wfr->get($customerOrder, 'orders');
             if($workflow->can($customerOrder, 'to_order')) {
                 $workflow->apply($customerOrder, 'to_order');
-                $customerOrder->setDateordered(new DateTime('now', new DateTimeZone('Pacific/Port_Moresby')));
+                // $customerOrder->setDateordered(new DateTime('now', new DateTimeZone('Pacific/Port_Moresby')));
             }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($customerOrder);

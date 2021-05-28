@@ -103,6 +103,11 @@ class CustomerOrder
      */
     private $itemsize;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $price;
+
     public function __construct()
     {
         $this->designs = new ArrayCollection();
@@ -330,6 +335,18 @@ class CustomerOrder
     public function setItemsize(string $itemsize): self
     {
         $this->itemsize = $itemsize;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?float $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

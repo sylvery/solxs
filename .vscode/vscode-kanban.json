@@ -18,6 +18,23 @@
       "assignedTo": {
         "name": "sylvery"
       },
+      "creation_time": "2021-05-28T11:09:52.208Z",
+      "description": {
+        "content": "A platform that brings together everyone in the creative arts industry",
+        "mime": "text/markdown"
+      },
+      "details": {
+        "content": "A platform that brings together everyone in the creative arts industry digital artists, printing companies and individuals, framing companies and individuals, and most importantly their customers",
+        "mime": "text/markdown"
+      },
+      "id": "5",
+      "references": [],
+      "title": "A disruptive platform"
+    },
+    {
+      "assignedTo": {
+        "name": "sylvery"
+      },
       "creation_time": "2021-05-25T00:52:43.387Z",
       "description": {
         "content": "The system should be able to generate a report and send it out as CSV",
@@ -26,9 +43,40 @@
       "id": "4",
       "references": [],
       "title": "Export report as CSV"
+    },
+    {
+      "assignedTo": {
+        "name": "sylvery"
+      },
+      "creation_time": "2021-05-28T12:30:03.151Z",
+      "description": {
+        "content": "Graphic design should be uploaded as well",
+        "mime": "text/markdown"
+      },
+      "details": {
+        "content": "When the order goes into the design phase, the graphic design developed should be uploaded and the file renamed appropriately.",
+        "mime": "text/markdown"
+      },
+      "id": "6",
+      "references": [],
+      "title": "Upload Graphic Design"
     }
   ],
-  "in-progress": [],
+  "in-progress": [
+    {
+      "assignedTo": {
+        "name": "sylvery"
+      },
+      "creation_time": "2021-05-28T12:35:09.715Z",
+      "description": {
+        "content": "Record sale price",
+        "mime": "text/markdown"
+      },
+      "id": "7",
+      "references": [],
+      "title": "Sale Price"
+    }
+  ],
   "testing": [],
   "done": [
     {

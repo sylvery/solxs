@@ -52,15 +52,15 @@
                     </tr>
                     <tr>
                         <th>Designed</th>
-                        <td>{{customer_order.designed}}</td>
+                        <td>{{customer_order.designed ? 'Yes' : 'No'}}</td>
                     </tr>
                     <tr>
                         <th>Printed</th>
-                        <td>{{customer_order.printed}} <span class="float-right">Date: {{customer_order.dateprinted|date('F j Y')}}</span></td>
+                        <td>{{customer_order.printed ? 'Yes' : 'No'}} <span class="float-right">Date: {{customer_order.dateprinted|date('F j Y')}}</span></td>
                     </tr>
                     <tr>
                         <th>Paid</th>
-                        <td>{{customer_order.paid}}</td>
+                        <td>{{customer_order.paid ? 'K' ~ customer_order.price}}</td>
                     </tr>
                     <tr>
                         <th>Delivery location</th>

@@ -28,6 +28,15 @@ class CustomerOrderType extends AbstractType
             $workflow = $this->wfr->get($data, 'orders');
             if ($workflow->can($data, 'to_order')) {
                 $form
+                    ->add('dateordered', null, [
+                        'input' => 'string',
+                        'widget' => 'single_text',
+                        'required' => 'required',
+                        'row_attr' => ['class' => 'col-12 input-group mb-2'],
+                        'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                        'label' => 'Date',
+                        'attr' => ['class' => 'form-control'],
+                    ])
                     ->add('customer', null, [
                         'required' => 'required',
                         'row_attr' => ['class' => 'col-12 input-group mb-2'],
@@ -108,13 +117,18 @@ class CustomerOrderType extends AbstractType
             } else if($workflow->can($data, 'to_deliver')){
                 $form
                     ->add('paid', null, [
-                        'row_attr' => ['class' => 'col-12 input-group form-inline mb-2'],
-                        'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
+                        'row_attr' => ['class' => 'col-6 input-group form-inline mb-2'],
+                        'label_attr' => ['class' => 'text-muted input-group-append'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('price', null, [
+                        'row_attr' => ['class' => 'col-6 input-group form-inline mb-2'],
+                        'label_attr' => ['class' => 'col-4 text-muted input-group-append'],
                         'attr' => ['class' => 'form-control'],
                     ])
                     ->add('delivered', null, [
                         'row_attr' => ['class' => 'col-12 input-group form-inline mb-2'],
-                        'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
+                        'label_attr' => ['class' => 'text-muted input-group-append'],
                         'attr' => ['class' => 'form-control'],
                     ])
                 ;
@@ -131,7 +145,7 @@ class CustomerOrderType extends AbstractType
                         // 'multiple' => true,
                         // 'class' => Design::class,
                         // 'choices' => $group->getDesigns(),
-                        'row_attr' => ['class' => 'row'],
+                        'row_attr' => ['class' => 'col-12 input-group mb-2'],
                         'label_attr' => ['class' => 'col-4 text-muted'],
                         'attr' => ['class' => 'col'],
                     ])
@@ -179,6 +193,11 @@ class CustomerOrderType extends AbstractType
                     ->add('deliveryLocation', null, [
                         'row_attr' => ['class' => 'col-12 input-group mb-2'],
                         'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('price', null, [
+                        'row_attr' => ['class' => 'col-12 input-group mb-2'],
+                        'label_attr' => ['class' => 'col-4 text-muted input-group-append'],
                         'attr' => ['class' => 'form-control'],
                     ])
                     ->add('designed', null, [
