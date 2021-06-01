@@ -19,7 +19,7 @@ class MainController extends AbstractController
     {
         return $this->render('main/index.html.twig', [
             'caps' => $design->findBy(['category'=>$dc->find(3)],null,5),
-            'shirts' => $design->findBy(['category'=>$dc->find(1)],null,5),
+            'shirts' => $design->findBy(['category'=>$dc->find(1)],null,15),
         ]);
     }
 }
