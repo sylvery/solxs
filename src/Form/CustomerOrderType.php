@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\CustomerOrder;
-use App\Entity\Design;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,6 +10,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Workflow\Registry;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CustomerOrderType extends AbstractType
 {
@@ -105,6 +105,12 @@ class CustomerOrderType extends AbstractType
                     'row_attr' => ['class' => 'col-12 input-group form-inline mb-2'],
                     'label_attr' => ['class' => 'col-8 text-muted input-group-append'],
                     'attr' => ['class' => 'form-control'],
+                ])
+                ->add('imageFile', VichImageType::class, [
+                    'required' => false,
+                    'row_attr' => ['class' => 'col-md-12 input-group mb-2'],
+                    'label_attr' => ['class' => 'col-3 text-muted input-group-prepend'],
+                    'attr' => ['class' => 'form-control'],
                 ]);
             } else if($workflow->can($data, 'to_print')){
                 $form                
@@ -198,6 +204,12 @@ class CustomerOrderType extends AbstractType
                     ->add('price', null, [
                         'row_attr' => ['class' => 'col-12 input-group mb-2'],
                         'label_attr' => ['class' => 'col-4 text-muted input-group-append'],
+                        'attr' => ['class' => 'form-control'],
+                    ])
+                    ->add('imageFile', VichImageType::class, [
+                        'required' => false,
+                        'row_attr' => ['class' => 'col-md-12 input-group mb-2'],
+                        'label_attr' => ['class' => 'col-3 text-muted input-group-prepend'],
                         'attr' => ['class' => 'form-control'],
                     ])
                     ->add('designed', null, [

@@ -17,7 +17,7 @@
             <h1>Designs <span class="badge badge-primary">{{ customer_order.designs.count }}</span></h1>
             <div class="list-inline">
                 {% for design in customer_order.designs %}
-                    <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100%;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+                    <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
                 {% endfor %}
             </div>
         </div>
@@ -52,7 +52,15 @@
                     </tr>
                     <tr>
                         <th>Designed</th>
-                        <td>{{customer_order.designed ? 'Yes' : 'No'}}</td>
+                        <td>{{customer_order.designed ? 'Yes' : 'No'}}
+                            {% if customer_order.imageName %}
+                                <span class="float-right">
+                                    <a class="btn btn-sm small btn-secondary" href="#" data-featherlight="{{ vich_uploader_asset(customer_order) }}">{{ customer_order.imageName }}
+                                        <img style="max-width: 0px;" src="{{ vich_uploader_asset(customer_order) }}" alt="" />
+                                    </a>
+                                </span>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th>Printed</th>
@@ -68,8 +76,7 @@
                     </tr>
                     <tr>
                         <th>Filename</th>
-                        <td>{{customer_order.customer.fullName|replace({" ":"_"})}}-{{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}
-                        </td>
+                        <td>{{customer_order.customer.fullName|replace({" ":"_"})}}-{{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}</td>
                     </tr>
                 </tbody>
             </table>

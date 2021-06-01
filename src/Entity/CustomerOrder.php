@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\CustomerOrderRepository;
+use DateTime;
+use DateTimeZone;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerOrderRepository::class)
+ * @Vich\Uploadable
  */
 class CustomerOrder
 {
@@ -43,6 +48,11 @@ class CustomerOrder
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $designed;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $datedesigned;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -107,10 +117,41 @@ class CustomerOrder
      * @ORM\Column(type="float", nullable=true)
      */
     private $price;
+    
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="refined", fileNameProperty="imageName", size="imageSize")
+     * 
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string|null
+     */
+    private $imageName;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     *
+     * @var int|null
+     */
+    private $imageSize;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @var \DateTimeInterface|null
+     */
+    private $updatedAt;
 
     public function __construct()
     {
         $this->designs = new ArrayCollection();
+        $this->refinedDesign = new ArrayCollection();
     }
 
     public function __toString()
@@ -350,4 +391,73 @@ class CustomerOrder
 
         return $this;
     }
+
+    public function getDatedesigned(): ?\DateTimeInterface
+    {
+        return $this->datedesigned;
+    }
+
+    public function setDatedesigned(?\DateTimeInterface $datedesigned): self
+    {
+        $this->datedesigned = $datedesigned;
+
+        return $this;
+    }
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+        if ($imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->setUpdatedAt(new DateTime('now', new DateTimeZone('Pacific/Port_Moresby')));
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
+    }
+
+    public function setImageSize(?int $imageSize): void
+    {
+        $this->imageSize = $imageSize;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
 }

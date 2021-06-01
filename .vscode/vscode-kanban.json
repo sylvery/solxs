@@ -48,18 +48,14 @@
       "assignedTo": {
         "name": "sylvery"
       },
-      "creation_time": "2021-05-28T12:30:03.151Z",
+      "creation_time": "2021-06-01T12:25:33.984Z",
       "description": {
-        "content": "Graphic design should be uploaded as well",
+        "content": "When updating printing, a photo of the printed shirt should also be uploaded.",
         "mime": "text/markdown"
       },
-      "details": {
-        "content": "When the order goes into the design phase, the graphic design developed should be uploaded and the file renamed appropriately.",
-        "mime": "text/markdown"
-      },
-      "id": "6",
+      "id": "10",
       "references": [],
-      "title": "Upload Graphic Design"
+      "title": "Upload photo of printed shirt/cap"
     }
   ],
   "in-progress": [
@@ -67,18 +63,31 @@
       "assignedTo": {
         "name": "sylvery"
       },
-      "creation_time": "2021-05-28T12:35:09.715Z",
+      "creation_time": "2021-06-01T12:24:31.977Z",
       "description": {
-        "content": "Record sale price",
+        "content": "Make file upload class that can be just linked from anywhere",
         "mime": "text/markdown"
       },
-      "id": "7",
+      "id": "9",
       "references": [],
-      "title": "Sale Price"
+      "title": "Fileupload Class"
     }
   ],
   "testing": [],
   "done": [
+    {
+      "assignedTo": {
+        "name": "sylvery"
+      },
+      "creation_time": "2021-05-31T14:53:12.658Z",
+      "description": {
+        "content": "Build in a small reporting dashboard at the Orders index page",
+        "mime": "text/markdown"
+      },
+      "id": "8",
+      "references": [],
+      "title": "Dashboard on Orders Index"
+    },
     {
       "assignedTo": {
         "name": "sylvery"
@@ -91,6 +100,36 @@
       "id": "3",
       "references": [],
       "title": "Pending/Completed Orders"
+    },
+    {
+      "assignedTo": {
+        "name": "sylvery"
+      },
+      "creation_time": "2021-05-28T12:35:09.715Z",
+      "description": {
+        "content": "Record sale price",
+        "mime": "text/markdown"
+      },
+      "id": "7",
+      "references": [],
+      "title": "Sale Price"
+    },
+    {
+      "assignedTo": {
+        "name": "sylvery"
+      },
+      "creation_time": "2021-05-28T12:30:03.151Z",
+      "description": {
+        "content": "Graphic design should be uploaded as well",
+        "mime": "text/markdown"
+      },
+      "details": {
+        "content": "When the order goes into the design phase, the graphic design developed should be uploaded and the file renamed appropriately.",
+        "mime": "text/markdown"
+      },
+      "id": "6",
+      "references": [],
+      "title": "Upload Graphic Design"
     }
   ]
 }

@@ -4,6 +4,49 @@
 
 {% block body %}
     <div class="row mb-3">
+        <div class="col-12">
+            <div class="card-deck">
+                <div class="card bg-info text-light mr-0">
+                    {# <img class="card-img-top" src="holder.js/100x180/" alt=""> #}
+                    <div class="card-body text-center">
+                        <h4 class="display-1">{{drafted|length|default('0')}}</h4>
+                        <p class="card-text">draft</p>
+                    </div>
+                </div>
+                <span class="btn btn-lg btn-info">></span>
+                <div class="card bg-warning text-light mr-0 ml-0">
+                    {# <img class="card-img-top" src="holder.js/100x180/" alt=""> #}
+                    <div class="card-body text-center">
+                        <h4 class="display-1">{{ordered|length|default('0')}}</h4>
+                        <p class="card-text">ordered and designing</p>
+                    </div>
+                </div>
+                <span class="btn btn-lg btn-warning">></span>
+                <div class="card bg-danger text-light mr-0 ml-0">
+                    {# <img class="card-img-top" src="holder.js/100x180/" alt=""> #}
+                    <div class="card-body text-center">
+                        <h4 class="display-1">{{designed|length|default('0')}}</h4>
+                        <p class="card-text">designed and printing</p>
+                    </div>
+                </div>
+                <span class="btn btn-lg btn-danger">></span>
+                <div class="card bg-success text-light mr-0 ml-0">
+                    {# <img class="card-img-top" src="holder.js/100x180/" alt=""> #}
+                    <div class="card-body text-center">
+                        <h4 class="display-1">{{printed|length|default('0')}}</h4>
+                        <p class="card-text">printed and delivering</p>
+                    </div>
+                </div>
+                <span class="btn btn-lg btn-success">></span>
+                <div class="card bg-primary text-light ml-0">
+                    {# <img class="card-img-top" src="holder.js/100x180/" alt=""> #}
+                    <div class="card-body text-center">
+                        <h4 class="display-1">{{delivered|length|default('0')}}</h4>
+                        <p class="card-text">delivered</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-md-8">
             <h1 class="text-info mb-3 display-4">Customer Orders</h1>
             <table class="table table-sm small table-striped mb-3">
@@ -22,7 +65,7 @@
                         <tr>
                             <td><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{ customer_order.customer }}</a></td>
                             <td><a class="btn btn-dark" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">{{ customer_order.designs.count }}</a></td>
-                            <td class="w-50">{{ customer_order.description }}</td>
+                            <td class="w-50">{{ customer_order.description }}<br /><span class="badge badge-primary small">{{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}</span></td>
                             <td>{{ customer_order.dateordered|date('jS F') }}</td>
                             <td>
                                 {% include "customer_order/snippets/orderstatus.html.twig" %}
@@ -41,8 +84,8 @@
             <h3 class="text-info my-3">Completed</h3>
             <div class="list-group list-group-flush">
                 {% for customer_order in customer_orders %}
-                    {% if customer_order.status is not null %}
-                        <a class="list-group-item list-group-item-action small border-primary text-info p-1" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">{{ customer_order.customer }}</a>
+                    {% if customer_order.status is same as(true) %}
+                        <a class="list-group-item list-group-item-action border-info text-info p-1" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">{{ customer_order.customer }} - {{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}</a>
                     {% endif %}
                 {% endfor %}
             </div>

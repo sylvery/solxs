@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Customer;
 use App\Entity\CustomerOrder;
 use App\Form\CustomerOrderType;
 use App\Repository\CustomerOrderRepository;
@@ -30,8 +31,42 @@ class CustomerOrderController extends AbstractController
      */
     public function index(CustomerOrderRepository $customerOrderRepository): Response
     {
+        $cusOrders = $customerOrderRepository->findAll();
+        $drafted = [];
+        $ordered = [];
+        $designed = [];
+        $printed = [];
+        $delivered = [];
+        foreach ($cusOrders as $order) {
+            $wf = $this->wfr->get($order);
+            $currentPlace = key($wf->getMarking($order)->getPlaces());
+            // dump($currentPlace); exit;
+            switch ($currentPlace) {
+                case 'ordered':
+                    array_push($ordered, $order);
+                    break;
+                case 'designed':
+                    array_push($designed, $order);
+                    break;
+                case 'printed':
+                    array_push($printed, $order);
+                    break;
+                case 'delivered':
+                    array_push($delivered, $order);
+                    break;
+                default:
+                    array_push($drafted, $order);
+                    break;
+            }
+        }
+        // dump($designed); exit;
         return $this->render('customer_order/index.html.twig', [
             'customer_orders' => $customerOrderRepository->findAll(),
+            'drafted' => $drafted,
+            'ordered' => $ordered,
+            'designed' => $designed,
+            'printed' => $printed,
+            'delivered' => $delivered,
         ]);
     }
 
@@ -51,6 +86,7 @@ class CustomerOrderController extends AbstractController
                 $workflow->apply($customerOrder, 'to_order');
                 // $customerOrder->setDateordered(new DateTime('now', new DateTimeZone('Pacific/Port_Moresby')));
             }
+            $customerOrder->setUpdatedAt(new DateTime('now', new DateTimeZone('Pacific/Port_Moresby')));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($customerOrder);
             $entityManager->flush();
