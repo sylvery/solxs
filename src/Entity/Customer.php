@@ -35,7 +35,7 @@ class Customer
     private $phoneNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity=CustomerOrder::class, mappedBy="customer")
+     * @ORM\OneToMany(targetEntity=CustomerOrder::class, mappedBy="customer", cascade={"persist"})
      */
     private $customerOrders;
 

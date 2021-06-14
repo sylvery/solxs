@@ -15,26 +15,26 @@ class CustomerType extends AbstractType
     {
         $builder
             ->add('fullName', TextType::class, [
-                'row_attr' => ['class' => 'col-md-6 input-group mb-2'],
-                'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                'row_attr' => ['class' => 'col-md-12 input-group mb-2'],
+                'label_attr' => ['class' => 'col-md-6 text-muted small input-group-prepend'],
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('phoneNumber', TextType::class, [
-                'row_attr' => ['class' => 'col-md-6 input-group mb-2'],
-                'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                'row_attr' => ['class' => 'col-md-12 input-group mb-2'],
+                'label_attr' => ['class' => 'col-md-6 text-muted small input-group-prepend'],
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('location', TextType::class, [
-                'row_attr' => ['class' => 'col-md-6 input-group mb-2'],
-                'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                'row_attr' => ['class' => 'col-md-12 input-group mb-2'],
+                'label_attr' => ['class' => 'col-md-6 text-muted small input-group-prepend'],
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('customerOrders', CollectionType::class, [
                 'entry_type' => CustomerNewOrderType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
-                'row_attr' => ['class' => 'col-md-6 input-group mb-2'],
-                'label_attr' => ['class' => 'col-4 text-muted input-group-prepend'],
+                'row_attr' => ['class' => 'col-md-12 input-group mb-2'],
+                'label_attr' => ['class' => 'col-md-6 text-muted small input-group-prepend'],
                 'attr' => ['class' => 'form-control'],
             ])
         ;

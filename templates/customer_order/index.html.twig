@@ -64,7 +64,7 @@
                 {% for customer_order in customer_orders %}
                     {% if customer_order.status is null %}
                         <tr>
-                            <td class="customer"><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{ customer_order.customer }}</a></td>
+                            <td class="customer"><a href="{{path('customer_show',{'id': customer_order.customer ? customer_order.customer.id : 1})}}">{{ customer_order.customer }}</a></td>
                             <td class="orders"><a class="btn btn-dark" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">&star;</a></td>
                             <td class="description" class="w-50">{{customer_order.designs[0]}} - {{ customer_order.description }}<br /><span class="badge badge-primary small">{{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}</span></td>
                             <td class="date">{{ customer_order.dateordered|date('jS F') }}</td>

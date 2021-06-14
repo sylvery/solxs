@@ -3,8 +3,8 @@
 {% block title %}Customer Order{% endblock %}
 
 {% block body %}
-    <h1 class="text-info mb-3 display-4"><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{customer_order.customer.fullName}}</a></h1>
-    <p class="small text-muted mb-3">Phone: {{customer_order.customer.phoneNumber}}</p>
+    <h1 class="text-info mb-3 display-4"><a href="{{path('customer_show',{'id': customer_order.customer ? customer_order.customer.id : 1})}}">{{customer_order.customer ? customer_order.customer.fullName}}</a></h1>
+    <p class="small text-muted mb-3">Phone: {{customer_order.customer ? customer_order.customer.phoneNumber}}</p>
     {# {% if is_granted('ROLE_ADMIN') %}     #}
     <div class="btn-group mb-3">
         <a class="btn btn-sm btn-secondary" href="{{ path('customer_order_index') }}">back to list</a>
@@ -76,7 +76,7 @@
                     </tr>
                     <tr>
                         <th>Filename</th>
-                        <td>{{customer_order.customer.fullName|replace({" ":"_"})}}-{{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}</td>
+                        <td>{{customer_order.customer ? customer_order.customer.fullName|replace({" ":"_"})}}-{{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}</td>
                     </tr>
                 </tbody>
             </table>

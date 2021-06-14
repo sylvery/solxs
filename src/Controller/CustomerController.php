@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Customer;
+use App\Entity\CustomerOrder;
 use App\Form\CustomerType;
 use App\Repository\CustomerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,6 +36,20 @@ class CustomerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // $orders = $form->getData()->getCustomerOrders();
+            // if ($orders) {
+            //     foreach ($orders as $order) {
+            //         // dump($order); exit;
+            //         $cuso = new CustomerOrder();
+            //         $cuso
+            //             ->addDesign($order->getDes)
+            //             ->setColor
+            //             ->setOrientation
+            //             ->setItemsize
+            //             ->setDescription
+            //         ;
+            //     }
+            // }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($customer);
             $entityManager->flush();

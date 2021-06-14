@@ -123,6 +123,7 @@ class CustomerOrderController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             if ($workflow->can($customerOrder, 'to_order')) {
+                $customerOrder->setDateordered(new DateTime($customerOrder->getDateordered(), new DateTimeZone('Pacific/Port_Moresby')));
                 $workflow->apply($customerOrder, 'to_order');
             } else if ($workflow->can($customerOrder, 'to_design')) {
                 $workflow->apply($customerOrder, 'to_design');
