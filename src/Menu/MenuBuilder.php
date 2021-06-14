@@ -1,5 +1,4 @@
 <?php
-// src/Menu/MenuBuilder.php
 
 namespace App\Menu;
 
