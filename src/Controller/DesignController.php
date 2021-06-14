@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DesignController extends AbstractController
 {
     /**
-     * @Route("/", name="design_index", methods={"GET"})
+     * @Route("s/", name="design_index", methods={"GET"})
      */
     public function index(DesignRepository $designRepository, DesignCategoryRepository $dcr): Response
     {
