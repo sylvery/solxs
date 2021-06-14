@@ -31,7 +31,7 @@ class DesignType extends AbstractType
             ->add('imageFile', FileType::class, [
                 'row_attr' => ['class' => 'col-md-12 input-group mb-2'],
                 'label_attr' => ['class' => 'col-3 text-muted input-group-prepend'],
-                'attr' => ['class' => 'form-control'],
+                // 'attr' => ['class' => 'col'],
             ])
             // ->add('customerOrders')
         ;

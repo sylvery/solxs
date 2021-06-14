@@ -14,7 +14,12 @@
             {# {% set adminUrl = ea_url()
                 .setController('App\\Controller\\Admin\\PlantAssetCrudController')
             %} #}
-            <a class="btn btn-dark nav-link" href="{{'#'}}">Admin</a>
+            {# <a class="btn btn-dark nav-link" href="{{'#'}}">Admin</a> #}
+            {{ knp_menu_render('shortcuts', {
+                'currentClass': 'active',
+                'ancestorClass': 'active',
+                'parentClass': 'active',
+            })}}
             {# <a class="btn btn-danger nav-link" href="{{path('app_logout')}}">Sign Out</a> #}
         </div>
     </nav>

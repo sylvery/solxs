@@ -5,16 +5,21 @@
 {% block body %}
     <h1 class="text-info mb-3 display-4">Designs</h1>
     <a class="btn btn-success btn-sm mb-3" href="{{ path('design_new') }}">add new design</a>
+    <a class="btn btn-dark btn-sm mb-3" href="{{ path('design_category_index') }}">design categories</a>
     {% for cat in designs %}
         <div class="row mb-3">
             <h3 class="text-primary">{{cat.category.title}}s</h3>
-            <div class="card-columns">
+            <div class="card-columns card-designs-main">
                 {% for design in cat.designs %}
                     <div class="card">
                         <div class="card-body">
-                            <a class="float-left mr-3" href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
-                            <h4 class="card-title">{{design.name}}</h4>
-                            <p class="card-text">{{design.description|raw}}</p>
+                            <div class="col-sm-12 col-md-3">
+                                <a class="float-left mr-3" href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+                            </div>
+                            <div class="col-sm-12 col-md-9">
+                                <h4 class="card-title">{{design.name}}</h4>
+                                <p class="card-text d-md-none d-sm-block">{{design.description|raw}}</p>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <a class="btn btn-secondary btn-block small btn-sm" href="{{path('design_show',{'id':design.id})}}">details</a>

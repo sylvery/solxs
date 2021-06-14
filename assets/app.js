@@ -14,6 +14,7 @@ import '/node_modules/bootstrap/dist/css/bootstrap-grid.css';
 import '/node_modules/featherlight/src/featherlight.css'
 
 // start the Stimulus application
+import './bootstrap';
 import 'jquery';
 import 'bootstrap';
 import 'popper.js';

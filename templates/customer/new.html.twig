@@ -4,5 +4,29 @@
 
 {% block body %}
     <h1 class="h1 text-info mb-3">Add new Customer</h1>
-    {{ include('main/_form.html.twig') }}
+    {# <div class="text-info" data-controller="hello">
+        <button data-action="click->hello#connect">Greet</button>
+    </div> #}
+    {{ form_start(form) }}
+        {{ form_row(form.fullName) }}
+        {{ form_row(form.phoneNumber) }}
+        {{ form_row(form.location) }}
+        <h3>Orders</h3>
+        <button type="button" class="add_order_link btn btn-info btn-sm small" data-conllection-holder-class="orders">add new order</button>
+        <ul class="orders">
+            {% for order in form.customerOrders %}
+                <li>{{form_row(order.color)}}</li>
+                {# <li>{{form_row(order.design)}}</li>
+                <li>{{form_row(order.color)}}</li>
+                <li>{{form_row(order.orientation)}}</li>
+                <li>{{form_row(order.itemsize)}}</li>
+                <li>{{form_row(order.description)}}</li> #}
+            {% endfor %}
+        </ul>
+        {{ form_widget(form.customerOrders) }}
+        <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('neworderjs') }}
 {% endblock %}
