@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-xs-12 mb-3">
             <p class="h1 display-4">Shirt Designs</p>
-            <div class="card-columns">
+            <div class="card-columns card-designs-main">
                 {% for design in shirts %}
                     <div class="card">
                         <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img class="img-fluid card-img-top" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>

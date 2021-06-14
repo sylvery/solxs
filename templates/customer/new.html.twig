@@ -12,17 +12,17 @@
         {{ form_row(form.phoneNumber) }}
         {{ form_row(form.location) }}
         <h3>Orders</h3>
-        <button type="button" class="add_order_link btn btn-info btn-sm small" data-conllection-holder-class="orders">add new order</button>
-        <ul class="orders">
+        <ul class="orders list-group" data-prototype="{{form_widget(form.customerOrders.vars.prototype)|e('html_attr')}}">
             {% for order in form.customerOrders %}
                 <li>{{form_row(order.color)}}</li>
-                {# <li>{{form_row(order.design)}}</li>
+                <li>{{form_row(order.design)}}</li>
                 <li>{{form_row(order.color)}}</li>
                 <li>{{form_row(order.orientation)}}</li>
                 <li>{{form_row(order.itemsize)}}</li>
-                <li>{{form_row(order.description)}}</li> #}
+                <li>{{form_row(order.description)}}</li>
             {% endfor %}
         </ul>
+        <button type="button" class="add_order_link btn btn-info btn-sm small" data-collection-holder-class="orders">add new order</button>
         {{ form_widget(form.customerOrders) }}
         <button class="btn btn-success">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}

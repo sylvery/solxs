@@ -12,32 +12,32 @@
                         <h4 class="display-1">{{drafted|length|default('0')}}</h4>
                         <p class="card-text">draft</p>
                     </div>
+                    <a class="card-footer btn btn-sm small btn-info show-drafts" href="#">> view</a>
                 </div>
-                <span class="btn btn-lg btn-info">></span>
                 <div class="card bg-warning text-light mr-0 ml-0">
                     {# <img class="card-img-top" src="holder.js/100x180/" alt=""> #}
                     <div class="card-body text-center">
                         <h4 class="display-1">{{ordered|length|default('0')}}</h4>
                         <p class="card-text">ordered and designing</p>
                     </div>
+                    <a href="#" class="card-footer btn btn-sm small btn-warning show-designing">> view</a>
                 </div>
-                <span class="btn btn-lg btn-warning">></span>
                 <div class="card bg-danger text-light mr-0 ml-0">
                     {# <img class="card-img-top" src="holder.js/100x180/" alt=""> #}
                     <div class="card-body text-center">
                         <h4 class="display-1">{{designed|length|default('0')}}</h4>
                         <p class="card-text">designed and printing</p>
                     </div>
+                    <a href="#" class="card-footer btn btn-sm small btn-danger show-printing">> view</a>
                 </div>
-                <span class="btn btn-lg btn-danger">></span>
                 <div class="card bg-success text-light mr-0 ml-0">
                     {# <img class="card-img-top" src="holder.js/100x180/" alt=""> #}
                     <div class="card-body text-center">
                         <h4 class="display-1">{{printed|length|default('0')}}</h4>
                         <p class="card-text">printed and delivering</p>
                     </div>
+                    <a href="#" class="card-footer btn btn-sm small btn-success show-delivering">> view</a>
                 </div>
-                <span class="btn btn-lg btn-success">></span>
                 <div class="card bg-primary text-light ml-0">
                     {# <img class="card-img-top" src="holder.js/100x180/" alt=""> #}
                     <div class="card-body text-center">
@@ -47,27 +47,28 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <h1 class="text-info mb-3 display-4">Customer Orders</h1>
+        <div class="col-md-8" id="ordersLists">
+            <h1 class="text-info mb-3">Customer Orders</h1>
+            <input class="search form-control float-right small col-offset-8 col" placeholder="Search" />
             <table class="table table-sm small table-striped mb-3">
                 <thead>
                     <tr>
-                        <th>Customer</th>
-                        <th>Orders</th>
-                        <th>Description</th>
-                        <th>Date Ordered</th>
-                        <th>Status</th>
+                        <th class="sort" data-sort="customer">Customer</th>
+                        <th class="sort" data-sort="orders">Orders</th>
+                        <th class="sort" data-sort="description">Description</th>
+                        <th class="sort" data-sort="date">Date Ordered</th>
+                        <th class="sort" data-sort="status">Status</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="list">
                 {% for customer_order in customer_orders %}
                     {% if customer_order.status is null %}
                         <tr>
-                            <td><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{ customer_order.customer }}</a></td>
-                            <td><a class="btn btn-dark" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">{{ customer_order.designs.count }}</a></td>
-                            <td class="w-50">{{ customer_order.description }}<br /><span class="badge badge-primary small">{{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}</span></td>
-                            <td>{{ customer_order.dateordered|date('jS F') }}</td>
-                            <td>
+                            <td class="customer"><a href="{{path('customer_show',{'id': customer_order.customer.id})}}">{{ customer_order.customer }}</a></td>
+                            <td class="orders"><a class="btn btn-dark" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">&star;</a></td>
+                            <td class="description" class="w-50">{{customer_order.designs[0]}} - {{ customer_order.description }}<br /><span class="badge badge-primary small">{{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}</span></td>
+                            <td class="date">{{ customer_order.dateordered|date('jS F') }}</td>
+                            <td class="status">
                                 {% include "customer_order/snippets/orderstatus.html.twig" %}
                             </td>
                         </tr>
@@ -81,14 +82,20 @@
             </table>
         </div>
         <div class="col-md-4">
-            <h3 class="text-info my-3">Completed</h3>
-            <div class="list-group list-group-flush">
+            {% set count = 0 %}
+            <h4 class="text-info my-3">Completed</span></h4>
+            <div class="list-group">
                 {% for customer_order in customer_orders %}
                     {% if customer_order.status is same as(true) %}
-                        <a class="list-group-item list-group-item-action border-info text-info p-1" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">{{ customer_order.customer }} - {{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}}</a>
+                        {% set count = count + 1 %}
+                        <a class="list-group-item list-group-item-action border-info small px-2 py-1" href="{{ path('customer_order_show', {'id': customer_order.id}) }}">{{ customer_order.customer }} - {{customer_order.color}}-{{customer_order.orientation}}-{{customer_order.itemsize}} @{{customer_order.designs[0]}}</a>
                     {% endif %}
                 {% endfor %}
+                <div class="list-group-item list-group-item-action border-dark text-dark small px-2 py-1 bg-light">{{count}} orders completed</div>
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('listordersjs') }}
 {% endblock %}
