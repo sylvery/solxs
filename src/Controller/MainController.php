@@ -31,7 +31,6 @@ class MainController extends AbstractController
 
     /**
      * @Route("/register", name="register_user")
-     * @IsGranted("IS_AUTHENTICATED_ANONYMOUSLY")
      */
     public function register(Request $request, UserPasswordEncoderInterface $upi)
     {
@@ -41,7 +40,7 @@ class MainController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $user->setPassword($upi->encodePassword($user,$user->getPassword()));
-            if ($user->getId() === 1 || $user->getId() === 2 || $user->getId() === 3) {
+            if ($user->getId() <10 ) {
                 $user->setRoles(['ROLE_ADMIN'=>'ROLE_ADMIN']);
             }
             $em->persist($user);

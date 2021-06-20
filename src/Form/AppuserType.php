@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Appuser;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,10 +20,10 @@ class AppuserType extends AbstractType
                 'attr' => ['class' => 'form-control'],
             ])
             // ->add('roles')
-            ->add('password', TextType::class, [
+            ->add('password', PasswordType::class, [
                 'row_attr' => ['class' => 'col-md-12 input-group mb-2'],
                 'label_attr' => ['class' => 'col-md-6 text-muted small input-group-prepend'],
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control password input-password'],
             ])
         ;
     }
