@@ -5,7 +5,8 @@
 {% block body %}
     <div class="row">
         <div class="col-4 featured-image">
-            <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img class="img-fluid card-img-top" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+            {# <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img class="img-fluid card-img-top" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a> #}
+            <a href="#" data-featherlight="{{ cloudinary_url(design.imageName) }}"><img class="img-fluid card-img-top" src="{{ cloudinary_url(design.imageName) }}" alt="{{ design.imageName }}" /></a>
         </div>
         <div class="col-8 content">
             <h1 class="text-info mb-3 display-4">{{design.name}}</h1>

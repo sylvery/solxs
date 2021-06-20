@@ -2,7 +2,7 @@
     {% for design in designs %}
         <div class="card">
             {# <img src="holder.js/100x180/" alt=""> #}
-            <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+            <a href="#" data-featherlight="{{ cloudinary_url(design.imageName) }}"><img style="max-width: 100px;" src="{{ cloudinary_url(design.imageName) }}" alt="{{ design.imageName }}" /></a>
             <div class="card-body p-2">
                 {# <h4 class="card-title">Title</h4> #}
                 <p class="card-text small">{{design.name}}</p>

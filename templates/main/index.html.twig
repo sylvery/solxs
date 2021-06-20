@@ -10,7 +10,7 @@
             <div class="card-columns card-designs-main">
                 {% for design in shirts %}
                     <div class="card">
-                        <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img class="img-fluid card-img-top" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+                        <a href="#" data-featherlight="{{ cloudinary_url(design.imageName) }}"><img class="img-fluid card-img-top" src="{{ cloudinary_url(design.imageName) }}" alt="{{ design.imageName }}" /></a>
                         <div class="card-body">
                             <h4 class="card-title"><a href="{{path('design_show',{'id':design.id})}}">{{design.name}}</a></h4>
                         </div>
@@ -23,7 +23,7 @@
             <div class="card-deck">
                 {% for design in caps %}
                     <div class="card">
-                        <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img class="img-fluid card-img-top" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+                        <a href="#" data-featherlight="{{ cloudinary_url(design.imageName) }}"><img class="img-fluid card-img-top" src="{{ cloudinary_url(design.imageName) }}" alt="{{ design.imageName }}" /></a>
                         <div class="card-body">
                             <h4 class="card-title">{{design.name}}</h4>
                             <p class="card-text">{{design.description}}</p>
