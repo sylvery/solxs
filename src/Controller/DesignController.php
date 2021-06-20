@@ -60,7 +60,6 @@ class DesignController extends AbstractController
                 ->setUpdatedAt(new DateTime('now', new DateTimeZone('Pacific/Port_Moresby')))
                 ->setImageName($uppedFile['public_id'])
             ;
-            $design->setImageSize($form->getData()->getImageSize());
             $design->setImageFile(null);
             // dump($form, $design); exit;
             $entityManager = $this->getDoctrine()->getManager();
