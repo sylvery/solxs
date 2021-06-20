@@ -17,7 +17,7 @@
             <h1>Designs <span class="badge badge-primary">{{ customer_order.designs.count }}</span></h1>
             <div class="list-inline">
                 {% for design in customer_order.designs %}
-                    <a href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+                    <a href="#" data-featherlight="img#{{design.imageName}}"><img id="{{design.imageName}}" style="max-width: 100px;" src="{{ cloudinary_url(design.imageName) }}" alt="{{ design.imageName }}" /></a>
                 {% endfor %}
             </div>
         </div>
@@ -54,11 +54,7 @@
                         <th>Designed</th>
                         <td>{{customer_order.designed ? 'Yes' : 'No'}}
                             {% if customer_order.imageName %}
-                                <span class="float-right">
-                                    <a class="btn btn-sm small btn-secondary" href="#" data-featherlight="{{ vich_uploader_asset(customer_order) }}">{{ customer_order.imageName }}
-                                        <img style="max-width: 0px;" src="{{ vich_uploader_asset(customer_order) }}" alt="" />
-                                    </a>
-                                </span>
+                                <img style="max-width: 100%;" src="{{ cloudinary_url(customer_order.imageName) }}" alt="" />
                             {% endif %}
                         </td>
                     </tr>

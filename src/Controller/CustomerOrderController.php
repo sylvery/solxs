@@ -126,6 +126,12 @@ class CustomerOrderController extends AbstractController
                 $customerOrder->setDateordered(new DateTime($customerOrder->getDateordered(), new DateTimeZone('Pacific/Port_Moresby')));
                 $workflow->apply($customerOrder, 'to_order');
             } else if ($workflow->can($customerOrder, 'to_design')) {
+                $uppedFile = \Cloudinary\Uploader::unsigned_upload($customerOrder->getImageFile(),'z0nzril1',[
+                    'cloud_name' => 'hnkjkttpd',
+                    'folder'=>'designs/refined',
+                ]);
+                $customerOrder->setImageFile(null);
+                $customerOrder->setImageName($uppedFile['public_id']);
                 $workflow->apply($customerOrder, 'to_design');
             } else if ($workflow->can($customerOrder, 'to_print')) {
                 $workflow->apply($customerOrder, 'to_print');
