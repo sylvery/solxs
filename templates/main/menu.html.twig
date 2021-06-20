@@ -22,5 +22,13 @@
             })}}
             {# <a class="btn btn-danger nav-link" href="{{path('app_logout')}}">Sign Out</a> #}
         </div>
+        <nav class="nav justify-content-end">
+            {% if app.user %}
+                <a class="nav-link text-light" href="{{path('home')}}">Hi {{app.user}}!</a>
+                <a class="nav-link btn btn-sm btn-danger" href="{{path('app_logout')}}">Logout</a>
+            {% else %}
+                <a class="nav-link btn btn-sm btn-success" href="{{path('app_login')}}">Login</a>
+            {% endif %}
+        </nav>
     </nav>
 </div>

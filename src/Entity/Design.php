@@ -40,7 +40,7 @@ class Design
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
-     * @Vich\UploadableField(mapping="designs", fileNameProperty="imageName", size="imageSize")
+     * @Vich\UploadableField(mapping="designs", fileNameProperty="imageName")
      * 
      * @var File|null
      */
@@ -52,13 +52,6 @@ class Design
      * @var string|null
      */
     private $imageName;
-
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @var int|null
-     */
-    private $imageSize;
 
     /**
      * @ORM\Column(type="datetime")
@@ -173,16 +166,6 @@ class Design
         return $this->imageName;
     }
     
-    public function setImageSize(?int $imageSize): void
-    {
-        $this->imageSize = $imageSize;
-    }
-
-    public function getImageSize(): ?int
-    {
-        return $this->imageSize;
-    }
-
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;

@@ -1,0 +1,11 @@
+speicher210_cloudinary:
+    # url: cloudinary://my-key:my-secret@my-cloud
+    url: cloudinary://347528563953393.P8ZPKOj7ML6HISGtEODDt8KRiEc@hnkjkttpd
+    # The next configuration variables should be defined if they are not present in the URL
+    # The URL will take precedence
+    cloud_name: hnkjkttpd
+    access_identifier:
+        api_key: 347528563953393
+        api_secret: P8ZPKOj7ML6HISGtEODDt8KRiEc
+    options:
+        secure: true

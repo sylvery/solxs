@@ -9,23 +9,26 @@
     {% for cat in designs %}
         <div class="row mb-3">
             <h3 class="text-primary">{{cat.category.title}}s</h3>
-            <div class="card-columns card-designs-main">
-                {% for design in cat.designs %}
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="col-sm-12 col-md-3">
-                                <a class="float-left mr-3" href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+            <div class="col-12">
+                <div class="card-columns card-designs-main">
+                    {% for design in cat.designs %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col-sm-12 col-md-3">
+                                    <a class="float-left mr-3" href="#" data-featherlight="{{ vich_uploader_asset(design) }}"><img style="max-width: 100px;" src="{{ vich_uploader_asset(design) }}" alt="{{ design.imageName }}" /></a>
+                                    <a class="float-left mr-3" href="#" data-featherlight="{{ cloudinary_url(design.imageName) }}"><img style="max-width: 100px;" src="{{ cloudinary_url(design.imageName) }}" alt="{{ design.imageName }}" /></a>
+                                </div>
+                                <div class="col-sm-12 col-md-9">
+                                    <h4 class="card-title">{{design.name}}</h4>
+                                    <p class="card-text d-md-none d-sm-block">{{design.description|raw}}</p>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-9">
-                                <h4 class="card-title">{{design.name}}</h4>
-                                <p class="card-text d-md-none d-sm-block">{{design.description|raw}}</p>
+                            <div class="card-footer">
+                                <a class="btn btn-secondary btn-block small btn-sm" href="{{path('design_show',{'id':design.id})}}">details</a>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <a class="btn btn-secondary btn-block small btn-sm" href="{{path('design_show',{'id':design.id})}}">details</a>
-                        </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     {% endfor %}

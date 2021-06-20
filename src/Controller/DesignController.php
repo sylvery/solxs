@@ -52,12 +52,16 @@ class DesignController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $uppedFile = \Cloudinary\Uploader::unsigned_upload($design->getImageFile(),'z0nzril1',[
+                'cloud_name' => 'hnkjkttpd',
+                'folder'=>'designs',
+            ]);
             $design
                 ->setUpdatedAt(new DateTime('now', new DateTimeZone('Pacific/Port_Moresby')))
-                ->setImageName($design->getImageFile()->getClientOriginalName())
-                // ->setImageSize($design->getImageFile()->getImageSize())
+                ->setImageName($uppedFile['public_id'])
             ;
-            $design->setImageSize($design->getImageFile()->getSize());
+            $design->setImageSize($form->getData()->getImageSize());
+            $design->setImageFile(null);
             // dump($form, $design); exit;
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($design);

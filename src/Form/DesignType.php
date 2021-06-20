@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class DesignType extends AbstractType
 {
@@ -28,10 +29,11 @@ class DesignType extends AbstractType
                 'label_attr' => ['class' => 'col-3 text-muted input-group-prepend'],
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('imageFile', FileType::class, [
+            ->add('imageFile', VichImageType::class, [
                 'row_attr' => ['class' => 'col-md-12 input-group mb-2'],
                 'label_attr' => ['class' => 'col-3 text-muted input-group-prepend'],
-                // 'attr' => ['class' => 'col'],
+                'label' => 'Sample Design',
+                'attr' => ['class' => 'col'],
             ])
             // ->add('customerOrders')
         ;
