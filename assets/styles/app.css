@@ -1,5 +1,5 @@
 #menu-nav {
-    background: linear-gradient(90deg,skyblue,cadetblue);
+    background: linear-gradient(90deg,skyblue,purple);
 }
 .vich-image > a > img {
     width: 100% !important;
@@ -15,4 +15,7 @@
         -moz-column-count: 5;
         column-count: 5;
     }
+}
+section {
+    padding: 3rem 0;
 }

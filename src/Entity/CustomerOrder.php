@@ -460,4 +460,34 @@ class CustomerOrder
         return $this;
     }
 
+    public function isDesigned(): ?bool
+    {
+        return $this->designed;
+    }
+
+    public function isPrinted(): ?bool
+    {
+        return $this->printed;
+    }
+
+    public function isPaid(): ?bool
+    {
+        return $this->paid;
+    }
+
+    public function isDelivered(): ?bool
+    {
+        return $this->delivered;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function isPrintsubmitted(): ?bool
+    {
+        return $this->printsubmitted;
+    }
+
 }
