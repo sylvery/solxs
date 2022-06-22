@@ -112,6 +112,11 @@ class MenuBuilder
             'attributes' => ['class' => 'nav-item'],
             'linkAttributes' => ['class' => 'nav-link'],
         ]);
+        $menu->addChild('React', [
+            'route'=>'app_react_default',
+            'attributes' => ['class' => 'nav-item'],
+            'linkAttributes' => ['class' => 'nav-link'],
+        ]);
         // $designs = $menu->addChild('Designs', [
         //     'attributes' => [
         //         'class' => 'dropdown',
