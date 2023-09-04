@@ -2,7 +2,12 @@
     "devDependencies": {
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.0.0",
+        "axios": "^0.27.2",
+        "babel-preset-react": "^6.24.1",
         "core-js": "^3.0.0",
+        "prop-types": "^15.8.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "regenerator-runtime": "^0.13.2",
         "stimulus": "^2.0.0",
         "webpack-notifier": "^1.6.0"
@@ -16,10 +21,14 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.17.12",
+        "@babel/plugin-transform-runtime": "^7.18.5",
+        "@babel/preset-react": "^7.17.12",
         "bootstrap": "^4.6.0",
         "featherlight": "^1.7.14",
         "jquery": "^3.6.0",
         "list.js": "^2.3.1",
-        "popper.js": "1.16.1"
+        "popper.js": "1.16.1",
+        "react-router-dom": "^6.3.0"
     }
 }

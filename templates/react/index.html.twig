@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony <\3 React{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="display-1 text-info">React done!</h1>
+        <div id="root"></div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('js/app') }}
+{% endblock %}
