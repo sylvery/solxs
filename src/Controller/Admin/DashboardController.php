@@ -61,6 +61,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Designs', 'fas fa-list', Design::class);
         yield MenuItem::linkToCrud('Customer', 'fas fa-list', Customer::class);
         yield MenuItem::linkToCrud('Design Category', 'fas fa-list', DesignCategory::class);
-        yield MenuItem::linkToRoute('<span class="btn btn-danger">exit</span>', 'fas fa-exit', 'home');
+        yield MenuItem::linkToUrl('<span class="btn btn-danger">exit</span>', '', '/');
     }
 }

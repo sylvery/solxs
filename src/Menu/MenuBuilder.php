@@ -112,11 +112,25 @@ class MenuBuilder
             'attributes' => ['class' => 'nav-item'],
             'linkAttributes' => ['class' => 'nav-link'],
         ]);
-        $menu->addChild('React', [
-            'route'=>'app_react_default',
-            'attributes' => ['class' => 'nav-item'],
-            'linkAttributes' => ['class' => 'nav-link'],
-        ]);
+        if ($this->security->getUser()) {
+            if ($this->security->getUser()->isAdmin()) {
+                $menu->addChild('React', [
+                    'route'=>'app_react_default',
+                    'attributes' => ['class' => 'nav-item'],
+                    'linkAttributes' => ['class' => 'nav-link'],
+                ]);
+                $menu->addChild('API', [
+                    'route'=>'api_entrypoint',
+                    'attributes' => ['class' => 'nav-item'],
+                    'linkAttributes' => ['class' => 'nav-link'],
+                ]);
+                $menu->addChild('Admin', [
+                    'route'=>'admin',
+                    'attributes' => ['class' => 'nav-item'],
+                    'linkAttributes' => ['class' => 'nav-link'],
+                ]);
+            }
+        }
         // $designs = $menu->addChild('Designs', [
         //     'attributes' => [
         //         'class' => 'dropdown',

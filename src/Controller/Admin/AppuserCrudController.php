@@ -32,7 +32,7 @@ class AppuserCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         $actions
-            ->remove(Crud::PAGE_INDEX, Action::DELETE)
+            // ->remove(Crud::PAGE_INDEX, Action::DELETE)
         ;
         return $actions;
     }
@@ -41,7 +41,7 @@ class AppuserCrudController extends AbstractCrudController
     {
         $plainPassword = $entityInstance->getPassword();
         $hashedPassword = $this->passwordHasher->hashPassword($entityInstance,$plainPassword);
-        dump($entityInstance); exit;
+        // dump($entityInstance); exit;
         $entityInstance
             ->setPassword($hashedPassword);
         ;
@@ -55,8 +55,8 @@ class AppuserCrudController extends AbstractCrudController
         $hashedPassword = $this->passwordHasher->hashPassword($entityInstance,$plainPassword);
         dump($entityInstance->getRoles());
         $entityInstance->setRoles([$entityInstance->getRoles()]);
-        dump($entityInstance);
-        exit;
+        // dump($entityInstance);
+        // exit;
         $entityInstance
             ->setPassword($hashedPassword);
         ;
@@ -68,23 +68,25 @@ class AppuserCrudController extends AbstractCrudController
     {
         $username = TextField::new('username');
         $password = TextField::new('password')->setFormType(PasswordType::class);
-        $roles = ArrayField::new('roles');
+        $roles = ChoiceField::new('roles')
+            ->setChoices(function(){
+                return [
+                    "ADMINISTRATOR" => "ROLE_ADMIN",
+                    "MANAGER" => "ROLE_MANAGER",
+                    // "LAB. TECHNICIAN" => "ROLE_LABTECH"
+                ];
+            })
+            ->setLabel('User Roles')
+            ->renderExpanded(true)
+            ->allowMultipleChoices(true)
+        ;
         if (Crud::PAGE_INDEX == $pageName) {
-            return [$username, $roles];
+            return [$username];
         }
         return [
             $username,
             $password,
-            ChoiceField::new('roles')
-                ->setChoices([
-                    'Admin'=>'ROLE_ADMIN',
-                    'User'=>'ROLE_ADMIN',
-                ])
-                ->renderExpanded()
-                // ->renderAsBadges([
-                //     'ROLE_ADMIN'=>'success',
-                //     'ROLE_USER'=>'danger',
-                // ])
+            $roles
         ];
     }
 }

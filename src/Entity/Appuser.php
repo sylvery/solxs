@@ -79,6 +79,15 @@ class Appuser implements UserInterface
         return $this;
     }
 
+    public function isAdmin()
+    {
+        $status = false;
+        foreach ($this->getRoles() as $role) {
+            $role === 'ROLE_ADMIN' ? $status = true : null;
+        }
+        return $status;
+    }
+
     /**
      * @see UserInterface
      */
